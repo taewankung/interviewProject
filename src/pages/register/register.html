@@ -1,0 +1,77 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar #navBar>
+    <ion-title>register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div>
+    
+    <form (ngSubmit)="register()" #registerForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+
+            <ion-item>
+              <ion-input type="text" placeholder="Username" name="Username" [(ngModel)]="registerCredentials.username" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="text" placeholder="name" name="name" [(ngModel)]="registerCredentials.name" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="text" placeholder="surname" name="surname" [(ngModel)]="registerCredentials.surname" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="tel" placeholder="tel" name="tel" [(ngModel)]="registerCredentials.tel" required></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      </form>
+      <form [formGroup]="form">
+      <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label >เลือกจังหวัด:</ion-label>
+              <ion-select formControlName="provinceData"  item-end placeholder="กดเพื่อเลือก">
+                <ion-option *ngFor="let data of proviceList;" value="{{data.PROVINCE_ID}}">{{data.PROVINCE_NAME}}</ion-option>
+            </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item *ngIf="form.get('provinceData').value!=-1">
+              <ion-label >เลือกอำเภอ:</ion-label>
+              <ion-select [(ngModel)]="amphurData" [ngModelOptions]="{standalone: true}" item-end placeholder="กดเพื่อเลือก">
+                <ion-option *ngFor="let data of amphurList;" value="{{data.AMPHUR_ID}}">{{data.AMPHUR_NAME}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+
+
+    </form>
+        <button ion-button class="submit-btn" full (click)="register()" [disabled]="!registerForm.form.valid">Register</button>
+        <button ion-button class="submit-btn" full type="submit" (click)="goBack()" > cancel </button>
+  </div>
+</ion-content>

@@ -1,0 +1,103 @@
+<!--
+  Generated template for the CommentPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar #navBar>
+    <ion-title>comment</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<form [formGroup]="form">
+<ion-list>
+<button ion-button full *ngIf="btnEnable && edit_mode" (click)="enableComment()">
+แสดงความคิดเห็น
+</button>
+
+
+<div *ngIf="commentEnable">
+<ion-label>
+	แสดงความคิดเห็น:
+</ion-label>
+<ion-grid>
+	<ion-row>
+		<ion-col>
+			<ion-item>
+				<ion-textarea  placeholder="แสดงความคิดเห็น\n\n\n\n\n" autosize formControlName="message">
+				</ion-textarea>
+			</ion-item>
+		</ion-col>
+	</ion-row>
+	<div *ngIf="pointEnable">
+	<ion-row>
+		<ion-col>
+			<ion-range min="-1" max="1" [(ngModel)]="point" color="Green" pin="true" formControlName="point">
+				<ion-label range-left>ไม่พอใจ</ion-label>
+      			<ion-label range-right>พอใจ</ion-label>
+			</ion-range>
+		</ion-col>
+	</ion-row>
+	</div>
+		<ion-row>
+			<ion-col>
+<!-- 			<div *ngIf="!pointEnable">
+				<button ion-button (click)="enablePoint()">
+					ให้คะแนน
+				</button>
+			</div>
+			<div *ngIf="pointEnable">
+				<button ion-button (click)="disablePoint()" color="danger">
+					ไม่ให้คะแนน
+				</button>
+			</div> -->
+			</ion-col>
+			<ion-col>
+				<ion-buttons end>
+		  			<button ion-button (click)="comment()">
+		  				ok
+		  			</button>
+		    		<button ion-button color="danger" (click)="disableComment()">
+		  				back
+		  			</button>
+				</ion-buttons>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	</div>
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+	<ion-label>
+	คะแนนความพอใจ: {{delight_point}}
+	</ion-label>
+	<ion-label>
+	คะแนนควาไม่พอใจ: {{undelight_point}}
+	</ion-label>
+	<ion-label>
+	rating:
+	</ion-label>
+	<rating
+			 [(ngModel)]="rate" 
+	        readOnly="true" 
+	        max="5" 
+	        emptyStarIconName="star-outline"
+	        halfStarIconName="star-half" 
+	        starIconName="star" 
+	        nullable="false" 
+	        (ngModelChange)="onModelChange($event)"
+	        [ngModelOptions]="{standalone: true}">
+	</rating>
+	<ion-label>
+	comment:
+	</ion-label>
+	<ion-item *ngFor="let data of commentList;">
+		{{data["comment_message"]}}
+	</ion-item>
+</ion-list>
+</form>
+</ion-content>

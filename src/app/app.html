@@ -1,0 +1,33 @@
+<ion-menu [content]="content" side="left" id="menu1">
+  <ion-header>
+    <ion-toolbar>
+<!--       <img *ngIf="sharedData.avatar ==''" height="42" width="42" src="assets/pic/person.png"/>
+      <div *ngIf="sharedData.username !='' && sharedData.avatar !='' ">
+        <img  [defaultImage]="defaultImage" 
+                  [lazyLoad]="sharedData.image"  
+                  [offset]="offset " height="42" width="42"/>
+     </div> -->
+      <ion-title>เมนู
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+ 
+  <ion-content>
+    <ion-list>
+      <ion-item>
+      Username: {{sharedData.username}}<br>
+      name: {{sharedData.name}}<br>
+      surname:{{sharedData.surname}}
+      </ion-item>
+      <button menuClose ion-item *ngFor="let p of pages; let i=index " (click)="openPage(p)">
+        {{p.title}}
+      </button>
+      <button menuClose ion-item (click)="logout(sharedData.username)">
+        ออกจากระบบ
+      </button>
+    </ion-list>
+  </ion-content>
+ 
+</ion-menu>
+
+<ion-nav #content [root]="rootPage"></ion-nav>

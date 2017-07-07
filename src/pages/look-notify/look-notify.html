@@ -1,0 +1,157 @@
+<!--
+  Generated template for the LookNotifilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar #navBar>
+
+    <ion-title>{{data.notifyTitle}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content #content padding class="my-page">
+<ion-list>
+	<ion-card>
+	<!-- <ion-card-header>รายละเอียด</ion-card-header> -->
+		<ion-item *ngIf="data.type_name=='give'" color="primary">
+			  <ion-avatar item-start>
+					 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
+					 	<div *ngIf="data.avatar!=''">
+					 		<img [defaultImage]="defaultImage" 
+					 			 [lazyLoad]="image+data.username+'/avatar/'+data.avatar"  
+					 			 [offset]="offset " >
+					 	</div>
+				  	</ion-avatar>
+				{{data["name"]}} {{data["surname"]}}<br>
+				ประเภท: {{data["type_name"]}}<br>
+				status: {{status_data(data["status"])}}
+		</ion-item>
+		<ion-item *ngIf="data.type_name=='recieve'" color="green4">
+			<ion-avatar item-start>
+				<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
+					 	<div *ngIf="data.avatar!=''">
+					 		<img [defaultImage]="defaultImage" 
+					 			 [lazyLoad]="image+data.username+'/avatar/'+data.avatar"  
+					 			 [offset]="offset " >
+					 	</div>
+			</ion-avatar>
+		  		{{data["name"]}} {{data["surname"]}}<br>
+		  		ประเภท: {{data["type_name"]}}<br>
+		  		status: {{status_data(data["status"])}}
+		</ion-item>
+	<ion-card-content>
+	<div *ngIf="data.image">
+	<img [defaultImage]="defaultImage" [lazyLoad]="image+data.username+'/'+data.image"  [offset]="offset">
+	</div>
+	<div>
+	<ion-grid>
+		<ion-row>
+			<ion-col>
+				<p *ngIf="data.PROVINCE_NAME!='ไม่ระบุ' && data.AMPHUR_NAME!='ไม่ระบุ' ">
+				ที่อยู่:จ.{{data.PROVINCE_NAME}} อ.{{data.AMPHUR_NAME}}
+				</p>
+				<p *ngIf="data.PROVINCE_NAME=='ไม่ระบุ' && data.AMPHUR_NAME=='ไม่ระบุ' ">
+				ที่อยู่: ไม่ระบุ
+				</p>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				เบอร์โทร: {{data.tel}}
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<h1 *ngIf="data.type_name=='give' ">รายละเอียด</h1>
+				<h1 *ngIf="data.type_name=='recieve' ">เหตุผล</h1>
+				<pre>
+				<p>{{data.detail}}
+				</p>
+				</pre>
+				<p *ngIf="data.type_name=='give' ">
+					จำนวนผู้สนใจรับ: {{interest_point}}
+				</p>
+				<p *ngIf="data.type_name=='recieve' ">
+					จำนวนผู้สนใจให้: {{interest_point}}
+				</p>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col>
+				<button ion-button full (click)="lookProfilePage()">ดูประวัติคนโพส </button>
+			</ion-col>
+			<ion-col >
+				<button ion-button full *ngIf="data.type_name=='recieve' && interestToggle" (click)="interest()">สนใจจะให้ </button>
+				<button class="moveDown" ion-button full *ngIf="data.type_name=='give' && interestToggle" (click)="interest()">สนใจจะรับ </button>
+				<button ion-button full *ngIf="!interestToggle" (click)="delete()" color="danger">เลิกสนใจ </button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	</div>
+	</ion-card-content>
+	</ion-card>
+
+	<div id={{from}}>
+	<ion-card *ngIf="!interestToggle && interested">
+		<ion-item *ngIf="data.type_name=='give'" color="primary">
+			  <ion-avatar item-start>
+					 	<img *ngIf="sharedData.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
+					 	<div *ngIf="sharedData.avatar!=''">
+					 		<img [defaultImage]="defaultImage" 
+					 			 [lazyLoad]="sharedData.image"  
+					 			 [offset]="offset ">
+					 	</div>
+				  	</ion-avatar>
+				{{sharedData["name"]}} {{sharedData["surname"]}}<br>
+				(ฝากข้อความถึงผู้ประกาศ)
+<!-- 				ประเภท: {{data["type_name"]}} -->
+		</ion-item>
+		<ion-item *ngIf="data.type_name=='recieve'" color="green4">
+			<ion-avatar item-start>
+				<img *ngIf="sharedData.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
+					 	<div *ngIf="sharedData.avatar!=''">
+					 		<img [defaultImage]="defaultImage"
+					 			 [lazyLoad]="image+sharedData.username+'/avatar/'+sharedData.avatar"  
+					 			 [offset]="offset" >
+					 	</div>
+			</ion-avatar>
+		  		{{sharedData["name"]}} {{sharedData["surname"]}}<br>
+		  		(ฝากข้อความถึงผู้ประกาศ)
+<!-- 		  		ประเภท: {{data["type_name"]}} -->
+		</ion-item>
+		<ion-card-content>
+		  <ion-textarea  placeholder="ส่งข้อความ\n\n\n" autosize [(ngModel)]="message" 
+		  				*ngIf="!interested || enable_btn">
+		  </ion-textarea>
+		  <div *ngIf="interested && !enable_btn">
+			  <pre>
+				  <p>{{message.toString()}}</p>
+			  </pre>
+		  </div>
+		  <ion-buttons end >
+		  	<button ion-button (click)="send()" *ngIf="enable_btn">ส่ง</button>
+		  	<button ion-button color="danger" (click)="delete()" >เลิกสนใจ</button>
+		  </ion-buttons>
+		</ion-card-content>
+	</ion-card>
+	</div>
+
+</ion-list>
+<ion-list>
+
+</ion-list>
+<!-- 	<ion-item>
+	</ion-item> -->
+<!-- </ion-list> -->
+
+<!--  <div class="myCarousel">
+    <div>Item 1</div>
+    <div>Item 2</div>
+    <div>Item 3</div>
+  </div> -->
+<!-- </ion-content> -->

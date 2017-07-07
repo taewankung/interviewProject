@@ -1,0 +1,155 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar #navBar>
+    <ion-title>profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-grid >
+<ion-row>
+  <ion-col col-8>
+	  <ion-label >
+	  	Username: {{sharedData.username}}
+	  </ion-label>
+	  <ion-label *ngIf="!edit">
+		name: {{editdata.name}}
+	  </ion-label>
+	  <ion-label *ngIf="!edit">
+		surname: {{editdata.surname}}
+	  </ion-label>
+	  <ion-label *ngIf="!edit">
+		email: {{editdata.email}}
+	  </ion-label>
+	  <ion-label *ngIf="!edit">
+		tel: {{editdata.tel}}
+	  </ion-label>
+<!-- 	  <ion-label *ngIf="!edit">
+	  	rating:comming-soon
+	  </ion-label> -->
+	  <ion-label *ngIf="!edit">
+					<p *ngIf="editdata.province_name!='ไม่ระบุ' && editdata.amphur_name!='ไม่ระบุ' ">
+					ที่อยู่:จ.{{editdata.province_name}} อ.{{editdata.amphur_name}}
+					</p>
+					<p *ngIf="editdata.province_name=='ไม่ระบุ' && editdata.amphur_name=='ไม่ระบุ' ">
+					ที่อยู่: ไม่ระบุ
+					</p>
+		</ion-label>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!--//////////////////////////////////////////edit_mode///////////////////////////////////////////// -->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////// -->
+	  <ion-label *ngIf="edit">
+	  	<ion-item>
+	  		<ion-input [(ngModel)]="editdata.name" ></ion-input>
+	  	</ion-item>
+	  </ion-label>
+	  <ion-label *ngIf="edit">
+		<ion-item>
+	  		<ion-input [(ngModel)]="editdata.surname" ></ion-input>
+	  	</ion-item> 
+	  </ion-label>
+	  <ion-label *ngIf="edit">
+		<ion-item>
+	  		<ion-input [(ngModel)]="editdata.email" ></ion-input>
+	  	</ion-item> 
+	  </ion-label>
+	  <ion-label *ngIf="edit">
+		<ion-item>
+	  		<ion-input [(ngModel)]="editdata.tel" ></ion-input>
+	  	</ion-item> 
+	  </ion-label>
+<!--//////////////////////////////////////////////////////////////////////////////////////////////// -->	  
+<!--/////////////////////////////////////////edit_mode/////////////////////////////////////////////// -->
+<!--//////////////////////////////////////////////////////////////////////////////////////////////// -->
+  </ion-col>
+  <ion-col col-4>
+    <img *ngIf="lastImage=='' && editdata.avatar=='' " src="assets/pic/person.png"/>
+    <img *ngIf="lastImage!='' " src="{{pathForImage(lastImage)}}"/>
+    <div *ngIf="sharedData.avatar!='' && !editImage ">
+     <img  [defaultImage]="defaultImage" 
+     	   [lazyLoad]="image+sharedData.username+'/avatar/'+sharedData.avatar"  
+     	   [offset]="offset " />
+     </div>
+    <button ion-button full (click)="accessGallery(camera.PictureSourceType.CAMERA)" >
+    เปลี่ยนรูป
+    </button>
+  </ion-col>
+</ion-row>
+</ion-grid>
+<form [formGroup]="form">
+      <ion-row>
+          <ion-col>
+            <ion-item *ngIf="edit">
+              <ion-label >เลือกจังหวัด:</ion-label>
+              <ion-select formControlName="provinceData"  item-end placeholder="กดเพื่อเลือก">
+                <ion-option *ngFor="let data of proviceList;" value="{{data.PROVINCE_ID}}">{{data.PROVINCE_NAME}}</ion-option>
+            </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item *ngIf="edit">
+              <ion-label >เลือกอำเภอ:</ion-label>
+              <ion-select [(ngModel)]="editdata.amphur_id" [ngModelOptions]="{standalone: true}" item-end placeholder="กดเพื่อเลือก">
+                <ion-option *ngFor="let data of amphurList;" value="{{data.AMPHUR_ID}}">{{data.AMPHUR_NAME}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+</form>
+    <button ion-button full *ngIf="!edit && !editImage" (click)="editMode()">
+    แก้ไขข้อมูล
+    </button>
+    <button ion-button full *ngIf="edit || editImage" (click)="save()">
+    	save
+    </button>
+    <button ion-button full *ngIf="edit" (click)="viewMode()">
+    	cancel
+    </button>
+	<button ion-button full (click)="gotoHistory()">
+		ดูประวัติการประกาศ
+	</button>
+	<button ion-button full (click)="gotoComment()">
+		ดูคอมเมนท์ที่ได้รับ
+	</button>
+<ion-grid>
+<!-- <ion-row>
+	<ion-col>
+		<button ion-button full>
+			ดูประวัติการประกาศ
+		</button>
+	</ion-col>
+</ion-row>
+<ion-row>
+	<ion-col>
+		<button ion-button full>
+			ดูประวัติการประกาศ
+		</button>
+	</ion-col>
+</ion-row> -->
+<!-- <ion-row>
+	<ion-col>
+		Recomments:
+		<ion-list>
+			<ion-item>
+			comming-soon
+			</ion-item>
+			<ion-item>
+			comming-soon
+			</ion-item>
+			<ion-item>
+			comming-soon
+			</ion-item>
+		</ion-list>
+	</ion-col>
+</ion-row> -->
+</ion-grid>
+</ion-content>
