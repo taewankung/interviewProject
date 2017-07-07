@@ -79,6 +79,6 @@ export class LookProfilePage {
 
   gotoHistory(){
     this.counter-=1;
-    this.navCtrl.push(HistoryPage);
+    this.navCtrl.push(HistoryPage,{"data":this.data});
   }
 }

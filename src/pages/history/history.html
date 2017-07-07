@@ -9,10 +9,50 @@
   <ion-navbar #navBar>
     <ion-title>history</ion-title>
   </ion-navbar>
-
+<ion-searchbar [(ngModel)]="searchText" [formControl]="searchCtrl" ></ion-searchbar>
+	<div *ngIf="searching" class="spinner-container">
+	    <ion-spinner></ion-spinner>
+	</div>
 </ion-header>
 
 
 <ion-content padding>
+<ion-list>
+	<ion-card *ngFor="let history_data of datalist" (click)="lookNotify(history_data)">
+			<ion-item *ngIf="history_data.type_name=='give'" color="primary">
+<ion-avatar item-start>
+				<img *ngIf="history_data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
+					 	<div *ngIf="history_data.avatar!=''">
+					 		<img [defaultImage]="defaultImage" 
+					 			 [lazyLoad]="image+history_data.username+'/avatar/'+history_data.avatar"  
+					 			 [offset]="offset " >
+					 	</div>
+			</ion-avatar>
+				{{history_data["name"]}} {{history_data["surname"]}}<br>
+				ประเภท: {{history_data["type_name"]}}<br>
+		</ion-item>
+		<ion-item *ngIf="history_data.type_name=='recieve'" color="green4">
+			<ion-avatar item-start>
+				<img *ngIf="history_data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
+					 	<div *ngIf="history_data.avatar!=''">
+					 		<img [defaultImage]="defaultImage" 
+					 			 [lazyLoad]="image+history_data.username+'/avatar/'+history_data.avatar"  
+					 			 [offset]="offset " >
+					 	</div>
+			</ion-avatar>
+		  		{{history_data["name"]}} {{history_data["surname"]}}<br>
+		  		ประเภท: {{history_data["type_name"]}}<br>
 
+		</ion-item>
+		<ion-item>
+			status: {{status_data(history_data["status"])}}<br>
+			สร้างเมื่อ: {{history_data["create_date"]}}
+		</ion-item>
+	</ion-card>
+
+</ion-list>
+
+ <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
 </ion-content>

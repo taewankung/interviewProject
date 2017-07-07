@@ -35,6 +35,14 @@ export class NotificationProvider {
         });
     }
 
+	searchIn(searchText,data){
+		console.log(searchText);
+		return data.filter((item) => {
+			//console.log(item)
+            return item.notifyTitle.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
+        });
+    }
+
     searchType(type){
 		//console.log(type);
 		return this.SearchData.filter((item) => {
@@ -135,6 +143,31 @@ export class NotificationProvider {
 			this.body = "key=my_list"+
 						"&start="+start.toString()+
 						"&user="+this.sharedData.username;
+			this.http.post(this.registerURI,
+		    				this.body,
+		    				this.requestOpt
+		    				).subscribe((data)=>{
+		    					console.log(data)
+		    					if(data.status===200){
+		    						this.response=data.json()
+		    						if(this.response["message"]=="Success"){
+		    							console.log("Success list")
+		    							this.SearchData=datalist;
+		    							observer.next(this.response["data"]);
+		    							observer.complete();
+		    						}
+		    					}else if(data.status===0){
+		    						console.log("can not connect");
+		    					}
+		    				},(err)=>{console.log(err);})
+		},(err)=>console.log(err))
+    }
+
+    someoneList(start,datalist,username){
+		return Observable.create((observer)=>{
+			this.body = "key=my_list"+
+						"&start="+start.toString()+
+						"&user="+username;
 			this.http.post(this.registerURI,
 		    				this.body,
 		    				this.requestOpt

@@ -1,10 +1,10 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage,AlertController, Navbar , NavController, NavParams } from 'ionic-angular';
+import { IonicPage, Navbar , NavController, NavParams } from 'ionic-angular';
 import { LookProfilePage } from '../look-profile/look-profile';
 import { SharedData} from '../../providers/shared-data/shared-data';
 import { NotificationProvider } from '../../providers/notification/notification';
 import { InterestingProvider } from '../../providers/interesting/interesting';
-import { DataServiceProvider } from '../../providers/data-service/data-service';
+//import { DataServiceProvider } from '../../providers/data-service/data-service';
 
 /**
  * Generated class for the MyManagePage page.
