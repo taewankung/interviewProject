@@ -18,7 +18,7 @@
 
 <ion-content padding>
 <ion-list>
-	<ion-card *ngFor="let history_data of datalist" (click)="lookNotify(history_data)">
+	<ion-card *ngFor="let history_data of dataInlist" (click)="lookNotify(history_data)">
 			<ion-item *ngIf="history_data.type_name=='give'" color="primary">
 <ion-avatar item-start>
 				<img *ngIf="history_data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
@@ -45,6 +45,7 @@
 
 		</ion-item>
 		<ion-item>
+			ชื่อประกาศ: {{history_data["notifyTitle"]}}<br>
 			status: {{status_data(history_data["status"])}}<br>
 			สร้างเมื่อ: {{history_data["create_date"]}}
 		</ion-item>

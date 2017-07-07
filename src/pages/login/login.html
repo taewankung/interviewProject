@@ -20,7 +20,7 @@
   <form (ngSubmit)="login()" #registerForm="ngForm">
     <ion-item>
       <!-- <ion-label color="primary">username</ion-label> -->
-      <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="loginCredentials.username" required></ion-input>
+      <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="loginCredentials.username" required pattern="[a-zA-Z ]*"></ion-input>
 
     </ion-item>
     <ion-item>

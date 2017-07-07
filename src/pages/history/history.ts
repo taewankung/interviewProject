@@ -26,6 +26,7 @@ export class HistoryPage {
   data:any;
   datalist:any;
   start:number=0;
+  dataInlist:any;
 
   searchText: string = '';
   searchCtrl: FormControl;
@@ -61,7 +62,7 @@ export class HistoryPage {
   }
 
   setFilteredItems() {
-    this.datalist = this.notifyPro.searchIn(this.searchText,this.datalist);
+    this.dataInlist = this.notifyPro.searchIn(this.searchText,this.datalist);
   }
   listHistory(data){
     console.log('//////////////');

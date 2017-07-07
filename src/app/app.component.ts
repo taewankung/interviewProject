@@ -38,7 +38,8 @@ export class MyApp {
       splashScreen.hide();
     });
     this.pages=[{title:"ข้อมูลส่วนตัว",page:ProfilePage},
-                {title:"ประกาศของฉัน",page:MyNotifyManagePage},
+                {title:"ตัวจัดการประกาศ",page:MyNotifyManagePage},
+                {title:"ประกาศที่สนใจ",page:null},
                 {title:"หน้าแรก",page:TabsPage},
                 {title:"ประกาศ",page:NotifyPage},
                 //,{title:"การตั้งค่า",page:null},

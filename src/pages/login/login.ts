@@ -22,6 +22,8 @@ export class LoginPage {
   loginCredentials = { username: '', 
                           password: '' 
                         };
+  temp_char:'';
+  regex = /(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})/i;
   constructor(public navCtrl: NavController, 
   			  public navParams: NavParams,
   			  public menuCtrl:MenuController,
