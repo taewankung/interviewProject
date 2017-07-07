@@ -1,9 +1,9 @@
 import { Component,ViewChild } from '@angular/core';
-import { IonicPage,AlertController, Navbar , NavController, NavParams } from 'ionic-angular';
+import { IonicPage, Navbar , NavController, NavParams } from 'ionic-angular';
 import { SharedData} from '../../providers/shared-data/shared-data';
 import { MyManagePage } from '../my-manage/my-manage';
 import { NotificationProvider} from '../../providers/notification/notification';
-
+import { FormControl } from '@angular/forms';
 /**
  * Generated class for the MyNotifyManagePage page.
  *
@@ -22,10 +22,24 @@ export class MyNotifyManagePage {
   interestNumber:number= 0;
   data:any;
 
+
+  searchText: string = '';
+  searchCtrl: FormControl;
+  searching: any = false;
   constructor(public navCtrl: NavController,
   			  public sharedData:SharedData,
   			  public notifyPro: NotificationProvider, 
   			  public navParams: NavParams) {
+
+    this.searchCtrl = new FormControl();
+    this.searchCtrl.valueChanges.debounceTime(700).subscribe(
+      search => {
+        this.searching = false;
+        this.setFilteredItems();
+      }
+    );
+
+
   }
 
   ionViewDidLoad() {
@@ -53,6 +67,9 @@ export class MyNotifyManagePage {
       console.log(err);
     });
   }
+  setFilteredItems() {
+    this.dataList = this.notifyPro.searchIn(this.searchText,this.dataList);
+  }
 
   gotoManage(data){
   	this.navCtrl.push(MyManagePage,{data:data});
@@ -60,5 +77,20 @@ export class MyNotifyManagePage {
 
   delete(){
     console.log("delete");
+  }
+
+    doInfinite(infiniteScroll) {
+    //console.log('Begin async operation');
+
+    setTimeout(() => {
+      // for (let i = 0; i < 30; i++) {
+      //   this.datalist.push( this.datalist.length );
+      // }
+    if(this.searchText == '' ){
+      this.myList(this.start,this.data);
+     }
+     // console.log('Async operation has ended');
+      infiniteScroll.complete();
+    }, 500);
   }
 }
