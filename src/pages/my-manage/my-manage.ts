@@ -98,6 +98,10 @@ export class MyManagePage {
     this.accept_text="ยังไม่เสร็จสิ้น"
   }
 
+  delete(){
+    console.log("delete");
+  }
+
   lookProfilePage(username){
     this.navCtrl.push(LookProfilePage,{username:username});
   }
