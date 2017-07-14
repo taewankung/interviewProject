@@ -99,28 +99,28 @@
 	<div id={{from}}>
 	<ion-card *ngIf="!interestToggle && interested">
 		<ion-item *ngIf="data.type_name=='give'" color="primary">
-			  <ion-avatar item-start>
+<!-- 			  <ion-avatar item-start>
 					 	<img *ngIf="sharedData.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="sharedData.avatar!=''">
 					 		<img [defaultImage]="defaultImage" 
 					 			 [lazyLoad]="sharedData.image"  
 					 			 [offset]="offset ">
 					 	</div>
-				  	</ion-avatar>
+				  	</ion-avatar> -->
 				{{sharedData["name"]}} {{sharedData["surname"]}}<br>
 				(ฝากข้อความถึงผู้ประกาศ)
 <!-- 				ประเภท: {{data["type_name"]}} -->
 		</ion-item>
 		<ion-item *ngIf="data.type_name=='recieve'" color="green4">
-			<ion-avatar item-start>
+			<!-- <ion-avatar item-start>
 				<img *ngIf="sharedData.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="sharedData.avatar!=''">
 					 		<img [defaultImage]="defaultImage"
 					 			 [lazyLoad]="image+sharedData.username+'/avatar/'+sharedData.avatar"  
 					 			 [offset]="offset" >
 					 	</div>
-			</ion-avatar>
-		  		{{sharedData["name"]}} {{sharedData["surname"]}}<br>
+			</ion-avatar> -->
+		  		<!-- {{sharedData["name"]}} {{sharedData["surname"]}}<br> -->
 		  		(ฝากข้อความถึงผู้ประกาศ)
 <!-- 		  		ประเภท: {{data["type_name"]}} -->
 		</ion-item>

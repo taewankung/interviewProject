@@ -1,0 +1,104 @@
+<!--
+  Generated template for the RegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar #navBar>
+    <ion-title>register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div>
+    
+    <form [formGroup]="profileForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-input user-validate type="text" placeholder="Username" name="Username" check="true" formControlName="username" required></ion-input>
+            </ion-item>
+            <div *ngIf="profileForm.get('username').hasError('required') && profileForm.get('username').touched" class="error-box">
+            * Username is required
+            </div>
+            <div *ngIf="!profileForm.get('username').hasError('required') && !profileForm.get('username').valid && profileForm.get('username').touched" class="error-box">
+            * Username has special character or not english character
+            </div>
+<!--/////////////////////////////////////password//////////////////////////////////////////-->
+            <ion-item>
+              <ion-input type="password" placeholder="Password" name="Password" 
+              formControlName="password" validateEqual="validatePass" reverse="false" required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="password" placeholder="Valid Password" name="ValidPassword" 
+              formControlName="validatePass"  validateEqual="password" reverse="true" required></ion-input>
+            </ion-item>
+            <div *ngIf="profileForm.get('password').hasError('required') && profileForm.get('password').touched" class="error-box">
+            * Password is required
+            </div>
+            <div *ngIf="!profileForm.get('validatePass').hasError('required') && !profileForm.get('validatePass').valid && profileForm.get('validatePass').touched" class="error-box">
+            * valid password not match</div>
+<!--///////////////////////////////////////////////////////////////////////////////////-->
+            <ion-item>
+              <ion-input type="text" placeholder="Name" name="Name" formControlName="name" required></ion-input>
+            </ion-item>
+            <ion-item>  
+              <ion-input type="text" placeholder="Surname" name="Surname" formControlName="surname" required></ion-input>
+            </ion-item>
+            <ion-item>  
+              <ion-input type="tel" placeholder="Tel" name="tel" formControlName="tel" miniLength=10 miniLength=10 validatePhone required></ion-input>
+            </ion-item>
+            <div *ngIf="profileForm.get('tel').hasError('required') && profileForm.get('tel').touched" class="error-box">
+            * tel is required
+            </div>
+            <div *ngIf="!profileForm.get('tel').hasError('required') && !profileForm.get('tel').valid && profileForm.get('tel').touched" class="error-box">
+            * Phonenumber is not format</div>
+<!--///////////////////////////////////////////////////////////////////////////////////-->     
+            <ion-item>  
+              <ion-input email-validator type="email" placeholder="Email" name="Email" formControlName="email" required></ion-input>
+            </ion-item>
+            <div *ngIf="profileForm.get('email').hasError('required') && profileForm.get('email').touched" class="error-box">
+              * Email is required
+            </div>
+            <div *ngIf="!profileForm.get('email').hasError('required') && !profileForm.get('email').valid && profileForm.get('email').touched" class="error-box">
+            * Email is not format</div>
+<!--///////////////////////////////////////////////////////////////////////////////////-->   
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      </form>
+
+      <form [formGroup]="form">
+      <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label >เลือกจังหวัด:</ion-label>
+              <ion-select formControlName="provinceData"  item-end placeholder="กดเพื่อเลือก">
+                <ion-option *ngFor="let data of proviceList;" value="{{data.PROVINCE_ID}}">{{data.PROVINCE_NAME}}</ion-option>
+            </ion-select>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item *ngIf="form.get('provinceData').value!=-1">
+              <ion-label >เลือกอำเภอ:</ion-label>
+              <ion-select [(ngModel)]="amphurData" [ngModelOptions]="{standalone: true}" item-end placeholder="กดเพื่อเลือก">
+                <ion-option *ngFor="let data of amphurList;" value="{{data.AMPHUR_ID}}">{{data.AMPHUR_NAME}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+
+
+    </form>
+        <button ion-button class="submit-btn" full (click)="register()" [disabled]="!profileForm.valid">register</button>
+        <button ion-button class="submit-btn" full type="submit" (click)="goBack()" > cancel </button>
+  </div>
+</ion-content>

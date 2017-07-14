@@ -1,7 +1,8 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, Navbar , NavController, NavParams } from 'ionic-angular';
 import { SharedData} from '../../providers/shared-data/shared-data';
-import { MyManagePage } from '../my-manage/my-manage';
+//import { MyManagePage } from '../my-manage/my-manage';
+import { LookNotifyPage } from '../look-notify/look-notify';
 import { NotificationProvider} from '../../providers/notification/notification';
 import { FormControl } from '@angular/forms';
 /**
@@ -12,10 +13,10 @@ import { FormControl } from '@angular/forms';
  */
 @IonicPage()
 @Component({
-  selector: 'page-my-notify-manage',
-  templateUrl: 'my-notify-manage.html',
+  selector: 'page-my-interesting',
+  templateUrl: 'my-interesting-page.html',
 })
-export class MyNotifyManagePage {
+export class MyInterestingPage {
   @ViewChild('navBar') navBar: Navbar;
   dataList:Array<any>=[];
   start:number= 0;
@@ -35,47 +36,17 @@ export class MyNotifyManagePage {
     this.searchCtrl.valueChanges.debounceTime(700).subscribe(
       search => {
         this.searching = false;
-        this.setFilteredItems()
+        this.setFilteredItems();
       }
     );
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MyNotifyManagePage');
-  }
-
+  
   ionViewWillEnter() {
   	this.start=0;
   	this.dataList=[];
-  	console.log('ionViewWillEnter MyNotifyManagePage');
+  	console.log('ionViewWillEnter MyInterestingPage');
     this.navBar._mode='ios';
-    this.myList(this.start,this.dataList);
-  }
-
-  myList(start,datalist){
-    this.notifyPro.myList(start,this.dataList).subscribe((success)=>{
-      for(let data of success){
-        console.log(data);
-        this.dataList.push(data);
-      	console.log(this.dataList);
-      }
-      this.start=this.start+4;
-
-    },(err)=>{
-      console.log(err);
-    });
-  }
-  
-  setFilteredItems() {
-    this.dataInList = this.notifyPro.searchIn(this.searchText,this.dataList);
-  }
-
-  gotoManage(data){
-  	this.navCtrl.push(MyManagePage,{data:data});
-  }
-
-  delete(){
-    console.log("delete");
+    this.myInterestingList(this.start,this.dataList);
   }
 
   status_data(data){
@@ -90,7 +61,34 @@ export class MyNotifyManagePage {
         }
   }
 
-  doInfinite(infiniteScroll) {
+  myInterestingList(start,datalist){
+    this.notifyPro.myInterestingList(start,this.dataList).subscribe((success)=>{
+      for(let data of success){
+        console.log(data);
+        this.dataList.push(data);
+      	console.log(this.dataList);
+      }
+      this.start=this.start+4;
+
+    },(err)=>{
+      console.log(err);
+    });
+  }
+
+  setFilteredItems() {
+  	console.log('??')
+    this.dataInList = this.notifyPro.searchIn(this.searchText,this.dataList);
+  }
+
+  gotoManage(data){
+  	this.navCtrl.push(LookNotifyPage,{data:data});
+  }
+
+  delete(){
+    console.log("delete");
+  }
+
+    doInfinite(infiniteScroll) {
     //console.log('Begin async operation');
 
     setTimeout(() => {
@@ -98,7 +96,7 @@ export class MyNotifyManagePage {
       //   this.datalist.push( this.datalist.length );
       // }
     if(this.searchText == '' ){
-      this.myList(this.start,this.data);
+      this.myInterestingList(this.start,this.data);
      }
      // console.log('Async operation has ended');
       infiniteScroll.complete();

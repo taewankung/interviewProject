@@ -17,7 +17,7 @@ import 'rxjs/add/operator/debounceTime';
 @IonicPage()
 @Component({
 	selector: 'page-register',
-	templateUrl: 'register.html',
+	templateUrl: 'register2.html',
 })
 export class RegisterPage {
 	@ViewChild('navBar') navBar: Navbar;
@@ -26,19 +26,35 @@ export class RegisterPage {
 	provinceData:number=-1;
 	amphurList:any=[];
 	amphurData:number=0;
+	
 	form =new FormGroup({
 		provinceData:new FormControl(-1)
 	})
+
+	profileForm=new FormGroup({
+		uid: new FormControl(''),
+		username: new FormControl(''),
+		password: new FormControl(''),
+		validatePass: new FormControl(''),
+		name: new FormControl(''),
+		surname: new FormControl(''),
+		tel: new FormControl(''),
+		email: new FormControl(''),
+		province_id: new FormControl(-1),
+		amphur_id: new FormControl(0),
+	})
+	
   	registerCredentials:any = { 
 						uid:'',
-						username:'',
+						username: '',
 						password: '',
+						validatePass: '',
 						name: '',
 						surname:'',
 						tel: '',
 						email: '',
 						province_id:-1,
-						amphur_id:0 
+						amphur_id:0
                         };
 
 	constructor(public navCtrl: NavController, 
@@ -54,7 +70,22 @@ export class RegisterPage {
 			(data)=>{console.log(data);
 				this.listAmphur(data);
 				console.log(this.amphurData)}
-			); 
+			);
+		// this.profileForm.get("username").valueChanges.debounceTime(1000).subscribe(
+		// 	(data)=>{console.log(data);
+		// 		//this.listAmphur(data);
+		// 		this.checkUser();
+		// 		console.log(data)
+		// 		if(data){
+		// 			this.check="true";
+		// 		}
+		// 		else{
+		// 			this.check="false";
+		// 		}
+		// 		console.log("check="+this.check);
+		// 	}
+
+			// );
   	}
 
 	ionViewWillEnter() {
@@ -65,6 +96,17 @@ export class RegisterPage {
 	goBack(){
 		//console.log(this.provinceData);
 		this.navCtrl.pop();
+	}
+
+	checkUser(){
+		this.authen.checkUser(this.profileForm.get("username").value).subscribe(
+			(success)=>{
+				console.log(success);
+				// if(success){
+				// 	console.log(this.profileForm.get("username").valid)
+				// }
+			},(err)=>{console.log(err)}
+			)
 	}
 
 	listProvince(){
@@ -89,11 +131,18 @@ export class RegisterPage {
 
 	register(){
 	  	console.log("register");
-	    this.registerCredentials.password = Md5.hashAsciiStr(this.registerCredentials.password).toString();
+	    this.registerCredentials.password = Md5.hashAsciiStr(this.profileForm.get("password").value).toString();
+
+
 	    if(this.registerCredentials.uid ==''){
 			console.log('gen uid');
-			this.registerCredentials.uid = Md5.hashAsciiStr(this.registerCredentials.username).toString();
+			this.registerCredentials.uid = Md5.hashAsciiStr(this.profileForm.get("username").value).toString();
 	    }
+	    this.registerCredentials.username = this.profileForm.get("username").value
+	    this.registerCredentials.name = this.profileForm.get("name").value
+	    this.registerCredentials.surname = this.profileForm.get("surname").value
+	    this.registerCredentials.email = this.profileForm.get("email").value
+	   	this.registerCredentials.tel = this.profileForm.get("tel").value
     	this.registerCredentials.amphur_id = this.amphurData;
     	if(this.form.get("provinceData").value == -1){
     		this.registerCredentials.province_id = 0;
@@ -102,15 +151,38 @@ export class RegisterPage {
     		this.registerCredentials.province_id = this.form.get("provinceData").value;
 		}
 	    this.sharedData.registerCredentials = this.registerCredentials;
+	   
 	    this.authen.register().subscribe(success => {
 			if (success) {
 				console.log("true")
 				this.registerCredentials = this.sharedData.clearRegisterData();
+				this.profileForm.setValue({uid:'',
+										  username:'',
+										  password:'',
+										  validatePass:'',
+										  name:'',
+										  surname:'',
+										  tel:'',
+										  email:'',
+										  province_id:-1,
+										  amphur_id:0
+										});
 				this.navCtrl.popToRoot();
 			}else {
 		       console.log("false")
-		       this.sharedData.clearRegisterData();
-		       this.registerCredentials.password =this.sharedData.registerCredentials.password;
+		       	this.registerCredentials = this.sharedData.clearRegisterData();
+   				this.profileForm.setValue({uid:'',
+							  username:'',
+							  password:'',
+							  validatePass:'',
+							  name:'',
+							  surname:'',
+							  tel:'',
+							  email:'',
+							  province_id:-1,
+							  amphur_id:0
+							});
+		       //this.registerCredentials.password.setValue(this.sharedData.registerCredentials.password);
 			}
 		},
 		error => {

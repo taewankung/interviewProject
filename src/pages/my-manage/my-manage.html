@@ -101,38 +101,38 @@
 </ion-label>
 <ion-card *ngFor="let i_data of this.interest_data.data;" (click)="lookProfilePage(i_data.username)">
 	<ion-item *ngIf="data.type_name=='recieve'" color="primary">
-				 <ion-avatar item-start>
-				 	<img *ngIf="i_data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
-				 	<div *ngIf="i_data.avatar!=''">
-				 		<img [defaultImage]="defaultImage" 
-				 			 [lazyLoad]="image+data.username+'/avatar/'+data.avatar"  
-				 			 [offset]="offset " 
-				 			 [scrollObservable]="container.ionScroll" >
-				 	</div>
-			  	</ion-avatar>
-	  			<!-- {{data["username"]}} -->{{i_data["name"]}} {{i_data["surname"]}}<br>
-	  			ประเภท: ให้
-	  	</ion-item>
-	  	<ion-item *ngIf="data.type_name=='give'" color="green4">
-				<ion-avatar item-start>
-				 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
-				 	<div *ngIf="data.avatar!=''">
-				 		<img [defaultImage]="defaultImage" 
-				 			 [lazyLoad]="image+i_data.username+'/avatar/'+i_data.avatar"  
-				 			 [offset]="offset " 
-				 			 [scrollObservable]="container.ionScroll" >
-				 	</div>
-			  	</ion-avatar>
-	  			<!-- {{data["username"]}} -->{{i_data["name"]}} {{i_data["surname"]}}<br>
-	  			ประเภท: รับ
-	  	</ion-item>
-	  	<ion-card-content>
-			{{i_data["post_data"]}}<br>
-			<ion-label>
-			ที่อยู่:
-			</ion-label> 
-			{{i_data["PROVINCE_NAME"]}} {{i_data["AMPHUR_NAME"]}}
-		</ion-card-content>
+		<ion-avatar item-start>
+			<img *ngIf="i_data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
+			<div *ngIf="i_data.avatar!=''">
+				<img [defaultImage]="defaultImage" 
+					 [lazyLoad]="image+data.username+'/avatar/'+data.avatar"  
+					 [offset]="offset " 
+					 [scrollObservable]="container.ionScroll" >
+			</div>
+		</ion-avatar>
+		<!-- {{data["username"]}} -->{{i_data["name"]}} {{i_data["surname"]}}<br>
+		ประเภท: ให้
+	</ion-item>
+	<ion-item *ngIf="data.type_name=='give'" color="green4">
+		<ion-avatar item-start>
+		 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
+		 	<div *ngIf="data.avatar!=''">
+		 		<img [defaultImage]="defaultImage" 
+		 			 [lazyLoad]="image+i_data.username+'/avatar/'+i_data.avatar"  
+		 			 [offset]="offset " 
+		 			 [scrollObservable]="container.ionScroll" >
+		 	</div>
+	  	</ion-avatar>
+			<!-- {{data["username"]}} -->{{i_data["name"]}} {{i_data["surname"]}}<br>
+			ประเภท: รับ
+	</ion-item>
+  	<ion-card-content>
+		{{i_data["post_data"]}}<br>
+		<ion-label>
+		ที่อยู่:
+		</ion-label> 
+		{{i_data["PROVINCE_NAME"]}} {{i_data["AMPHUR_NAME"]}}
+	</ion-card-content>
 </ion-card>
 </ion-list>
 </ion-content>

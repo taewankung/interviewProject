@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 //import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-
+import { FormControl } from '@angular/forms';
 /*
   Generated class for the SharedDataProvider provider.
 
@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class SharedData {  
-  ip_local:string = '192.168.1.20';
+  ip_local:string = '192.168.1.2:7777';
   id:string;
   username: string;
   name: string;
@@ -33,11 +33,12 @@ export class SharedData {
  	registerCredentials = { 
                           uid:'',
                           username:'',
-                          password: '',
+                          password:'',
+                          validatePass:'',
                           name: '',
                           surname:'',
                           tel: '',
-                          email: '',
+                          email:'',
                           avatar:'',
                           province_id:0,
                           amphur_id:0
@@ -57,7 +58,8 @@ export class SharedData {
   	this.registerCredentials = { 
                           uid:'',
                           username:'',
-                          password: '',
+                          password:'',
+                          validatePass:'',
                           name: '',
                           surname:'',
                           tel: '',

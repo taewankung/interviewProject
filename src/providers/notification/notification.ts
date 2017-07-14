@@ -138,6 +138,34 @@ export class NotificationProvider {
 			console.log(err);
     	});
     }
+
+    myInterestingList(start,datalist){
+    	return Observable.create((observer)=>{
+    		this.body = "key=my_interesting_list"+
+    					"&start="+start.toString()+
+    					"&user="+this.sharedData.username+
+    					"&user_id="+this.sharedData.id;
+    		console.log(this.sharedData.id)
+    		this.http.post(this.registerURI,
+		    				this.body,
+		    				this.requestOpt
+		    				).subscribe((data)=>{
+		    					console.log(data)
+		    					if(data.status===200){
+		    						this.response=data.json()
+		    						if(this.response["message"]=="Success"){
+		    							console.log("Success list")
+		    							this.SearchData=datalist;
+		    							observer.next(this.response["data"]);
+		    							observer.complete();
+		    						}
+		    					}else if(data.status===0){
+		    						console.log("can not connect");
+		    					}
+		    				},(err)=>{console.log(err);})
+		},(err)=>console.log(err))
+    }
+
     myList(start,datalist){
 		return Observable.create((observer)=>{
 			this.body = "key=my_list"+

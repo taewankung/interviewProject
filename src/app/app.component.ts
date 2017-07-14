@@ -7,6 +7,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { NotifyPage } from '../pages/notify/notify';
 import { ProfilePage } from '../pages/profile/profile';
 import { MyNotifyManagePage } from '../pages/my-notify-manage/my-notify-manage';
+import { MyInterestingPage } from '../pages/my-interesting-page/my-interesting-page';
+import { RulePage } from '../pages/rule/rule';
 
 import { SharedData } from '../providers/shared-data/shared-data';
 import { AuthService } from '../providers/auth-service/auth-service';
@@ -37,14 +39,15 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-    this.pages=[{title:"ข้อมูลส่วนตัว",page:ProfilePage},
+    this.pages=[{title:"หน้าแรก",page:TabsPage},
+                {title:"ข้อมูลส่วนตัว",page:ProfilePage},
                 {title:"ตัวจัดการประกาศ",page:MyNotifyManagePage},
-                {title:"ประกาศที่สนใจ",page:null},
-                {title:"หน้าแรก",page:TabsPage},
-                {title:"ประกาศ",page:NotifyPage},
-                //,{title:"การตั้งค่า",page:null},
+                {title:"ประกาศที่ต้องการให้/รับ",page:MyInterestingPage},
+                {title:"สร้างประกาศ",page:NotifyPage},
+                {title:"กฏการประกาศ",page:RulePage}
                 //{title:"เกี่ยวกับ",page:null}];
-               ]}
+               ]
+             }
   openPage(page){
     if(page.page != null){
       this.nav.push(page.page);

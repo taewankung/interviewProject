@@ -37,8 +37,9 @@ export class DataServiceProvider {
 			this.http.post(this.registerURI,
 						   this.body,
 						   this.requestOpt).subscribe((data)=>{
-						   		this.response = data.json();
 						   		
+						   		this.response = data.json();
+						   		console.log("??");
 						   		if(data.status===200){
 						   			//console.log(data);
 						   			if(this.response["message"]=='Success'){
@@ -82,7 +83,7 @@ export class DataServiceProvider {
 		    							observer.complete();
 		    						}
 		    						else{
-		    							console.log("fails");
+		    							console.log("Fails");
 		    							console.log(data);
 		    							this.success = false;
 		    							observer.next(this.success);

@@ -21,7 +21,8 @@ import { CommentPage } from '../pages/comment/comment';//11
 import { HistoryPage } from '../pages/history/history';//12
 import { MyManagePage } from '../pages/my-manage/my-manage';//13
 import { MyNotifyManagePage } from '../pages/my-notify-manage/my-notify-manage';//14
-
+import { MyInterestingPage } from '../pages/my-interesting-page/my-interesting-page';
+import { RulePage } from '../pages/rule/rule';
 
 import { SharedData } from '../providers/shared-data/shared-data';
 import { AuthService } from '../providers/auth-service/auth-service';
@@ -39,7 +40,12 @@ import { DataServiceProvider } from '../providers/data-service/data-service';
 import { InterestingProvider } from '../providers/interesting/interesting';
 import { CommentProvider } from '../providers/comment/comment';
 
+
 import { Ionic2RatingModule } from 'ionic2-rating';
+import { EmailValidateDirective } from '../directives/email-validate/email-validate';
+import { UserValidateDirective } from '../directives/user-validate/user-validate';
+import { EqualValidatorDirective } from '../directives/equal-validator/equal-validator';
+import { PhoneValidateDirective } from '../directives/phone-validate/phone-validate';
 
 @NgModule({
   declarations: [
@@ -58,7 +64,13 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     HistoryPage,
     MyManagePage,
     MyNotifyManagePage,
-    Autosize
+    MyInterestingPage,
+    RulePage,
+    Autosize,
+    EmailValidateDirective,
+    UserValidateDirective,
+    EqualValidatorDirective,
+    PhoneValidateDirective
   ],
   imports: [
     BrowserModule,
@@ -83,7 +95,9 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     CommentPage,
     HistoryPage,
     MyManagePage,
-    MyNotifyManagePage
+    MyNotifyManagePage,
+    MyInterestingPage,
+    RulePage
   ],
   providers: [
     StatusBar,

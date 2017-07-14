@@ -18,6 +18,7 @@ export class AuthService {
   	public check_regis:boolean;
   	public check_login:string;
   	public check_logout:boolean;
+  	public haveUser:boolean;
   	public header: Headers = new Headers(
                     { 'Content-Type': "application/x-www-form-urlencoded; charset=UTF-8"
                     });
@@ -161,7 +162,35 @@ export class AuthService {
 			}
 		)
 	}
+	checkUser(data){
+		console.log("check_user");
+		return Observable.create(observer=>{
+			this.body = "key=check_user"+
+		             "&username=" + data.valueOf();
 
-
+		        this.http.post(
+		        			this.registerURI,
+		        			this.body,
+					   		this.requestOpt).subscribe(
+					data=>{
+						if(data.status===200){
+			        		this.haveUser=true;
+			        		this.response=data.json();
+			        		if(this.response["message"]=="Success"){
+			        			this.haveUser=true;
+			        			console.log(this.response["message"]);
+			        			observer.next(this.haveUser);
+			        			observer.complete();
+			        		}
+			        		else{
+			        			this.haveUser=false;
+			        			console.log(this.response["message"]);
+			        			observer.next(this.haveUser)
+			        			observer.complete();
+			        		}
+		        	}
+		        });
+			},(err)=>{console.log(err)});
+	}
 
 }

@@ -20,12 +20,20 @@
   <form (ngSubmit)="login()" #registerForm="ngForm">
     <ion-item>
       <!-- <ion-label color="primary">username</ion-label> -->
-      <ion-input type="text" placeholder="Username" name="username" [(ngModel)]="loginCredentials.username" required pattern="[a-zA-Z ]*"></ion-input>
-
+      <ion-input user-validate type="text" placeholder="Username" name="username" [formControl]="username" required></ion-input>
     </ion-item>
+    <div *ngIf="username.hasError('required') && username.touched" class="error-box">
+    * Username is required
+    </div>
+    <div *ngIf="!username.hasError('required') && username.value != '' && !username.valid && username.touched" class="error-box">
+    * Username has special character or other language
+    </div>
     <ion-item>
-      <ion-input type="password" placeholder="Password" name="password" [(ngModel)]="loginCredentials.password" required></ion-input>
+      <ion-input type="password" placeholder="Password" name="password" [formControl]="password" required></ion-input>
     </ion-item>
+       <div *ngIf="password.hasError('required') && password.touched"
+            class="error-box">* Password is required
+      </div>
       <button ion-button full type="submit" [disabled]="!registerForm.form.valid">
         login
       </button>

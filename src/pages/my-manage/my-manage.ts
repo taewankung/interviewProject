@@ -88,6 +88,7 @@ export class MyManagePage {
     this.updateStatus(2)
     this.accepting=true;
     this.accept_text="เสร็จสิ้น"
+    console.log(this.data)
   }
 
   deaccept(){

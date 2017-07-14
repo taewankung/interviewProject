@@ -72,17 +72,20 @@ export class ProfilePage {
 			    public fromService :FromServiceProvider
 			    ) {
 		this.listProvince();
+
 		this.form.get("provinceData").valueChanges.debounceTime(700).subscribe(
 			(data)=>{console.log(data);
 				this.listAmphur(data);
 				console.log(this.editdata.amphur_name)}
 			);
+		console.log("test in ")
 	}
 
 	ionViewWillEnter() {
-	console.log('ionViewDidLoad ProfilePage');
-	this.navBar._mode='ios';
-	this.updateSharedData();
+		console.log('ionViewDidLoad ProfilePage');
+		this.navBar._mode='ios';
+
+		this.updateSharedData();
 	}
 
 	listProvince(){
@@ -244,6 +247,7 @@ export class ProfilePage {
 
 	  }
 	  updateSharedData(){
+
 	  	this.dataService.view_profile(this.sharedData.username).subscribe(
 	  		(data)=>{
     			this.data=data;
@@ -259,6 +263,7 @@ export class ProfilePage {
     			this.sharedData.image ='http://'+this.sharedData.ip_local +
 					   									'/giveAndShare/uploads/'+ this.sharedData.username+ 
 					   									'/avatar/'+	this.sharedData.avatar;
+
     			this.viewMode();
     			console.log(data);
 
