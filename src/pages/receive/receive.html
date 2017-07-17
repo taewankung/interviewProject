@@ -35,7 +35,7 @@
           </ion-avatar>
           <!-- {{data["username"]}} -->{{data["name"]}} {{data["surname"]}}<br>
 	  			ประเภท: {{data["type_name"]}}<br>
-          status: {{status_data(data["status"])}}
+          <!-- status: {{status_data(data["status"])}} -->
 	  	</ion-item>
  		<ion-card-content *ngIf="data.type_name=='recieve'">
  			<ion-card-title>
@@ -43,6 +43,7 @@
       	</ion-card-title>
 <!--       	<pre><p>{{data["detail"].toString()}}</p></pre><br> -->
       	<p>
+          สถานะ: {{status_data(data["status"],data["type"])}}<br>
 	  			{{data["create_date"]}}
 	  		</p>
         <div *ngIf="data.image">

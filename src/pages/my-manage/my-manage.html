@@ -30,7 +30,7 @@
 				  	</ion-avatar>
 				{{data["name"]}} {{data["surname"]}}<br>
 				ประเภท: {{data["type_name"]}}<br>
-				status: {{this.accept_text}}
+
 		</ion-item>
 		<ion-item *ngIf="data.type_name=='recieve'" color="green4">
 			<ion-avatar item-start>
@@ -43,20 +43,23 @@
 			</ion-avatar>
 		  		{{data["name"]}} {{data["surname"]}}<br>
 		  		ประเภท: {{data["type_name"]}}<br>
-		  		status: {{this.accept_text}}
+
 		</ion-item>
-		<button ion-button *ngIf="!accepting" (click)="accept()">
-			ยืนยันการเสร็จสิ้น
+<!-- 		<button ion-button *ngIf="!accepting" (click)="accept()">
+			{{acceptTextBtn()}}
 		</button>
 		<button ion-button color="danger" *ngIf="accepting" (click)="deaccept()">
 			ยกเลิก
-		</button>
-		<button ion-button color="danger" (click)="delete()">
+		</button> -->
+<!-- 		<button ion-button color="danger" (click)="delete()">
 			ลบ
-		</button>
+		</button> -->
 			<ion-card-content>
 	<div *ngIf="data.image">
 	<img [defaultImage]="defaultImage" [lazyLoad]="image+data.username+'/'+data.image"  [offset]="offset">
+		<h1>
+		Status: {{this.accept_text}}
+		</h1>  		<!-- status: {{this.accept_text}} -->
 	</div>
 	<div>
 	<ion-grid>
@@ -99,8 +102,8 @@
 <ion-label>
 	ผู้สนใจให้:
 </ion-label>
-<ion-card *ngFor="let i_data of this.interest_data.data;" (click)="lookProfilePage(i_data.username)">
-	<ion-item *ngIf="data.type_name=='recieve'" color="primary">
+<ion-card *ngFor="let i_data of this.interest_data.data;">
+	<ion-item *ngIf="data.type_name=='recieve'" color="primary"  (click)="lookProfilePage(i_data.username)">
 		<ion-avatar item-start>
 			<img *ngIf="i_data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 			<div *ngIf="i_data.avatar!=''">
@@ -113,7 +116,7 @@
 		<!-- {{data["username"]}} -->{{i_data["name"]}} {{i_data["surname"]}}<br>
 		ประเภท: ให้
 	</ion-item>
-	<ion-item *ngIf="data.type_name=='give'" color="green4">
+	<ion-item *ngIf="data.type_name=='give'" color="green4"  (click)="lookProfilePage(i_data.username)">
 		<ion-avatar item-start>
 		 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 		 	<div *ngIf="data.avatar!=''">
@@ -130,8 +133,20 @@
 		{{i_data["post_data"]}}<br>
 		<ion-label>
 		ที่อยู่:
-		</ion-label> 
+		</ion-label>
 		{{i_data["PROVINCE_NAME"]}} {{i_data["AMPHUR_NAME"]}}
+		<ion-buttons end>
+
+			<button ion-button *ngIf="!accepting" (click)="accept(i_data.id)">
+				{{acceptTextBtn()}}
+			</button>
+			<button ion-button color="secondary" (click)="lookProfilePage(i_data.username)">
+				ดูประวัติ
+			</button>
+			<button ion-button color="danger" *ngIf="accepting" (click)="deaccept(i_data.id)">
+				ยกเลิก
+			</button>
+		</ion-buttons>
 	</ion-card-content>
 </ion-card>
 </ion-list>

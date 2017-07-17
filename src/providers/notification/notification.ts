@@ -69,6 +69,24 @@ export class NotificationProvider {
 		});
     }
 
+    update_accept_user(id,accept_user_id){
+    	return Observable.create((observer)=>{
+			this.body = "key=update_accept_user"+
+						"&notification_id="+id+
+						"&accept_user_id="+accept_user_id;
+			console.log(this.body);
+			this.http.post(this.registerURI,
+		    				this.body,
+		    				this.requestOpt
+		    				).subscribe((data)=>{
+		    					this.response=data.json()
+		    					console.log(this.response)
+		    					observer.next(this.response["message"]);
+		    					observer.complete();
+		    				})
+		});
+    }
+
     viewStatus(id){
 		return Observable.create((observer)=>{
 			this.body = "key=view_status"+

@@ -76,15 +76,18 @@ lookNotify(data){
     this.navCtrl.push(LookNotifyPage,{data:data,from:"recive"});
   }
 
-  status_data(data){
+  status_data(data,type){
      if(data==0){
           return "รอการตัดสิน";
         }
         else if(data==1){
           return "ยังไม่เสร็จสิ้น"
         }
-        else if(data==2){
-          return "เสร็จสิ้น"
+        else if(data==2 && type=="give"){
+          return "ให้เรียบร้อยแล้ว"
+        }
+        else if(data==2 && type=="recieve"){
+          return "รับของเรียบร้อยแล้ว"
         }
   }
 

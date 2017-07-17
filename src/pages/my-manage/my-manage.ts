@@ -57,9 +57,17 @@ export class MyManagePage {
   		}
   	);
     this.viewStatus();
-   
   }
-  
+
+  acceptTextBtn(){
+    if(this.data["type_name"]=="give"){
+      return "ยืนยันการให้";
+    }
+    else if(this.data["type_name"]=="recieve"){
+      return "ยืนยันการรับ";
+    }
+  }
+
   viewStatus(){
     this.NotifyPro.viewStatus(this.data.notification_id).subscribe(
       success=>{
@@ -70,33 +78,43 @@ export class MyManagePage {
           this.accepting=false;
           this.accept_text="รอการตัดสิน";
         }
-        else if(this.view_status==1){
+        else if(this.view_status==1 && this.data["type_name"]=="recieve"){
           this.accepting=false;
-          this.accept_text="ยังไม่เสร็จสิ้น"
+          this.accept_text="ยังไม่ได้รับของ"
         }
-        else if(this.view_status==2){
+        else if(this.view_status==1 && this.data["type_name"]=="give"){
+          this.accepting=false;
+          this.accept_text="ยังไม่ได้ให้ของ";
+        }
+        else if(this.view_status==2 && this.data["type_name"]=="give"){
           this.accepting=true;
-          this.accept_text="เสร็จสิ้น"
+          this.accept_text="ให้ของเรียบร้อยแล้ว"}
+        else if(this.view_status==2 && this.data["type_name"]=="recieve"){
+          this.accepting=true;
+          this.accept_text="รับของเรียบร้อยแล้ว"
         }
-      }
-    );
-  }
-  updateStatus(status){
-  this.NotifyPro.update_status(this.data.notification_id,status).subscribe(()=>{this.viewStatus();});
-  }
-  accept(){
-    this.updateStatus(2)
-    this.accepting=true;
-    this.accept_text="เสร็จสิ้น"
-    console.log(this.data)
+  });
   }
 
-  deaccept(){
-    this.updateStatus(1)
-    //this.NotifyPro.update_status(this.data.notification_id,1).subscribe();
-    this.viewStatus();
-    this.accepting=false;
-    this.accept_text="ยังไม่เสร็จสิ้น"
+  updateStatus(status,id){
+  this.NotifyPro.update_status(this.data.notification_id,status).subscribe(()=>{
+                               this.viewStatus();
+                               this.updateAccept(id)});
+  }
+  updateAccept(id){
+    console.log("what")
+  this.NotifyPro.update_accept_user(this.data.notification_id,id).subscribe(()=>{
+                               this.viewStatus();});
+  }
+  accept(id){
+    this.updateStatus(2,id);
+    //this.updateAccept(id);
+    console.log(this.data);
+  }
+
+  deaccept(id){
+    this.updateStatus(1,id);
+    //this.updateAccept(id);
   }
 
   delete(){
@@ -106,6 +124,4 @@ export class MyManagePage {
   lookProfilePage(username){
     this.navCtrl.push(LookProfilePage,{username:username});
   }
-
-
 }
