@@ -17,7 +17,7 @@
 
 <ion-list inset>
   <div class="login-box">
-  <form (ngSubmit)="login()" #registerForm="ngForm">
+  <form (ngSubmit)="login(false)" #registerForm="ngForm">
     <ion-item>
       <!-- <ion-label color="primary">username</ion-label> -->
       <ion-input user-validate type="text" placeholder="Username" name="username" [formControl]="username" required></ion-input>

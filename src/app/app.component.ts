@@ -21,6 +21,7 @@ import { AuthService } from '../providers/auth-service/auth-service';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:any = LoginPage;
+  firstpage:any = this.rootPage;
   pages: Array<{title: string, page:any}>;
 
   defaultImage = 'assets/pic/person.png';
@@ -61,7 +62,8 @@ export class MyApp {
     console.log("logout");
     this.authen.logout().subscribe(success=>{
       if(success){
-        this.nav.setRoot(LoginPage);
+
+        this.nav.setRoot(LoginPage,{data:"logout"});
       }
     },(err)=>{
               console.log(err)

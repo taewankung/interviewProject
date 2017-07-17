@@ -33,6 +33,7 @@ import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
+import { IonicStorageModule } from '@ionic/storage';
 
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { FromServiceProvider } from '../providers/from-service/from-service';
@@ -77,7 +78,8 @@ import { PhoneValidateDirective } from '../directives/phone-validate/phone-valid
     IonicModule.forRoot(MyApp),
     HttpModule,
     LazyLoadImageModule,
-    Ionic2RatingModule
+    Ionic2RatingModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

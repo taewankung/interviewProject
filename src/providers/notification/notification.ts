@@ -28,11 +28,37 @@ export class NotificationProvider {
 	}
 
 	search(searchText){
-		console.log(searchText);
+    		this.body = "key=search"+
+						"&username="+searchText.toString()+
+						"&title="+searchText.toString();
+    		this.http.post(this.registerURI,
+		    				this.body,
+		    				this.requestOpt
+		    				).subscribe((data)=>{
+		    					if(data.status===200){
+		    						console.log(data)
+		    						this.response=data.json()
+		    						if(this.response["message"]=="Success"){
+		    							console.log("Success list")
+		    							//this.SearchData = datalist;
+		    							console.log(searchText)
+		    							this.SearchData = this.response["data"];
+		    							//observer.next(this.response["data"]);
+		    							//observer.complete();
+		    						}
+		    					}
+		    				},(err)=>{
+		    					console.log(err);
+		    				})
+		///////////////////////////////////////////////////////////////////////////////////
+		// console.log('XXXXXXXXXXXXXXXXXXXXXXXx')
 		return this.SearchData.filter((item) => {
-			//console.log(item)
-            return item.notifyTitle.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
+			// console.log('********************')
+			// console.log(item)
+            return (item.username.toLowerCase().indexOf(searchText.toLowerCase()) > -1) || 
+            	   (item.notifyTitle.toLowerCase().indexOf(searchText.toLowerCase()) > -1);
         });
+        /////////////////////////////////////////////////////////////////////////////////////
     }
 
 	searchIn(searchText,data){
@@ -116,7 +142,7 @@ export class NotificationProvider {
 		    						this.response=data.json()
 		    						if(this.response["message"]=="Success"){
 		    							console.log("Success list")
-		    							this.SearchData=datalist;
+		    							this.SearchData = datalist;
 		    							this.SearchData = this.response["data"];
 		    							observer.next(this.response["data"]);
 		    							observer.complete();
@@ -143,7 +169,7 @@ export class NotificationProvider {
 		    						this.response=data.json()
 		    						if(this.response["message"]=="Success"){
 		    							console.log("Success list")
-		    							this.SearchData=datalist;
+		    							this.SearchData = datalist;
 		    							this.SearchData = this.response["data"];
 		    							observer.next(this.response["data"]);
 		    							observer.complete();
@@ -173,7 +199,7 @@ export class NotificationProvider {
 		    						this.response=data.json()
 		    						if(this.response["message"]=="Success"){
 		    							console.log("Success list")
-		    							this.SearchData=datalist;
+		    							this.SearchData = datalist;
 		    							observer.next(this.response["data"]);
 		    							observer.complete();
 		    						}
@@ -189,6 +215,7 @@ export class NotificationProvider {
 			this.body = "key=my_list"+
 						"&start="+start.toString()+
 						"&user="+this.sharedData.username;
+
 			this.http.post(this.registerURI,
 		    				this.body,
 		    				this.requestOpt
@@ -239,6 +266,7 @@ export class NotificationProvider {
 			this.body = "key=list"+
 						"&start="+start.toString()+
 						"&user="+this.sharedData.username;
+			console.log("this start= "+ start);
 			this.http.post(this.registerURI,
 		    				this.body,
 		    				this.requestOpt

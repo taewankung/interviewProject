@@ -36,7 +36,8 @@ export class MyManagePage {
   			  public sharedData: SharedData,
           public NotifyPro:NotificationProvider,
   			  public interestPro: InterestingProvider){
-    this.data=this.navParams.get("data");
+    
+    this.data = this.navParams.get("data");
   }
 
   ionViewDidLoad(){

@@ -7,6 +7,7 @@ import { AuthService } from '../../providers/auth-service/auth-service';
 import { SharedData } from '../../providers/shared-data/shared-data';
 import { Md5 } from 'ts-md5/dist/md5';
 import { FormControl } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the LoginPage page.
@@ -25,14 +26,40 @@ export class LoginPage {
   temp_char:'';
   userErrorText='';
   passErrorText='';
+  parameter:any;
   constructor(public navCtrl: NavController, 
   			  public navParams: NavParams,
   			  public menuCtrl:MenuController,
   			  public authen:AuthService,
           public sharedData:SharedData,
-          public alertCtrl:AlertController) {
+          public alertCtrl:AlertController,
+          public storage: Storage) {
+    this.parameter =  navParams.get("data");
     this.username = new FormControl;
     this.password = new FormControl;
+    if(this.parameter=="logout"){
+      this.storage.remove('username');
+      this.storage.remove('password');
+      console.log('????')
+    }
+    this.storage.get('username').then(username=>{
+        // if(val){
+        //     console.log('not empty '+val);
+        //   }
+        console.log(username)
+        if(username)
+          this.username.setValue(username);
+        this.storage.get('password').then(password=>{
+          this.password.setValue(password);
+          console.log(password);
+          if(password)
+            this.login(true);
+            // if(val){
+            //     console.log('password not empty '+ val);
+            //   }
+        });
+    });
+   
   }
 
   ionViewDidLoad() {
@@ -47,17 +74,25 @@ export class LoginPage {
     this.menuCtrl.enable(true);
   }
 
-  login(){
+  login(remember){
   	console.log("login");
     //console.log(this.authen.login());
-    this.password.setValue(Md5.hashStr(this.password.value));
+    if(!remember){
+      this.password.setValue(Md5.hashStr(this.password.value));
+    }
     this.sharedData.loginCredentials.username = this.username.value;
     this.sharedData.loginCredentials.password = this.password.value;
     this.authen.login().subscribe(
       (success)=>{
         if(success=="pass"){
-          console.log("login compleate");
+          this.storage.set('username', this.username.value);
+          this.storage.set('password', this.password.value);
 
+
+          console.log("login compleate");
+          this.storage.get('password').then(val=>{
+            console.log(val);
+          })
           //this.menuCtrl.enable(true);
           this.navCtrl.setRoot(TabsPage);
         }
@@ -79,6 +114,7 @@ export class LoginPage {
           this.sharedData.loginCredentials.password = this.password.value;
           console.log("login fail");
         }
+
 
       },
       (err)=>{

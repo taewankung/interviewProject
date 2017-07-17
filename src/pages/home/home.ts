@@ -75,10 +75,11 @@ export class HomePage {
   list(start,datalist){
     this.notifyPro.list(start,this.datalist).subscribe((success)=>{
       for(let data of success){
-        console.log(data);
+        //console.log('//////////////////////////////////////////////////')
+        //console.log(data);
         this.datalist.push(data);
       }
-      this.start=this.start+4;
+      this.start = this.start+4;
     },(err)=>{console.log(err);
     });
   }
@@ -92,6 +93,8 @@ export class HomePage {
       // }
     if(this.searchText == '' ){
       this.list(this.start,this.datalist);
+      //console.log(this.start);
+      //console.log(this.datalist.length)
      }
      // console.log('Async operation has ended');
       infiniteScroll.complete();
