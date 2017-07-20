@@ -17,6 +17,7 @@
 
 <ion-list>
 	<ion-card  *ngFor="let data of datalist; let i = index; " (click)="lookNotify(data)">
+		<ion-item-sliding>
 		<ion-item *ngIf="data.type_name=='give'" color="primary">
 				 <ion-avatar item-start>
 				 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
@@ -31,6 +32,7 @@
 	  			ประเภท: {{data["type_name"]}}<br>
 
 	  	</ion-item>
+	  	</ion-item-sliding>
 	  	<ion-item *ngIf="data.type_name=='recieve'" color="green4">
 				<ion-avatar item-start>
 				 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>

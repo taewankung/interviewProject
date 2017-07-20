@@ -89,6 +89,20 @@ export class NotifyPage {
                         observer.next(this.enableDetail); 
                         observer.complete();
                       }
+                      
+                      else if(this.type=='support'){
+                        this.enableDetail=true;
+                        this.disableBtn=false;
+                        this.detailText='เหตุผล';
+                        if(this.notifyTitle==''){
+                           this.disableBtn=true;
+                        }else{
+                          this.disableBtn=false;
+                        }
+                        this.selectType="ประเภท";
+                        observer.next(this.enableDetail); 
+                        observer.complete();
+                      }
                       else if(this.type==''){
                         this.enableDetail=false;
                         this.disableBtn=true;

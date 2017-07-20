@@ -1,6 +1,6 @@
-import { Directive, forwardRef, Input } from '@angular/core';
+import { Directive, forwardRef } from '@angular/core';
 import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
-import { PhoneNumberUtil } from 'google-libphonenumber';
+//import { PhoneNumberUtil } from 'google-libphonenumber';
 
 export const PHONE_VALIDATOR: any = {
   provide: NG_VALIDATORS,

@@ -10,7 +10,7 @@ import { FormControl } from '@angular/forms';
 */
 @Injectable()
 export class SharedData {  
-  ip_local:string = '192.168.1.2:7777';
+  ip_local:string = '192.168.1.11';
   id:string;
   username: string;
   name: string;

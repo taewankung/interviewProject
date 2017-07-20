@@ -6,13 +6,13 @@ import { FormControl } from '@angular/forms';
 import { LookNotifyPage } from '../look-notify/look-notify';
 
 import 'rxjs/add/operator/debounceTime';
-
+import 'rxjs/add/operator/distinctUntilChanged';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  datalist:Array<any>=[];
+  datalist:any=[];
   start:number =0;
   defaultImage = 'assets/loading.gif';
   image = 'http://'+this.sharedData.ip_local +'/giveAndShare/uploads/';
@@ -31,7 +31,7 @@ export class HomePage {
   			 ) {
 
     this.searchCtrl = new FormControl();
-    this.searchCtrl.valueChanges.debounceTime(700).subscribe(
+    this.searchCtrl.valueChanges.debounceTime(700).distinctUntilChanged().subscribe(
       search => {
         this.searching = false;
         this.setFilteredItems();

@@ -8,6 +8,7 @@ import { NotifyPage } from '../pages/notify/notify';
 import { ProfilePage } from '../pages/profile/profile';
 import { MyNotifyManagePage } from '../pages/my-notify-manage/my-notify-manage';
 import { MyInterestingPage } from '../pages/my-interesting-page/my-interesting-page';
+
 import { RulePage } from '../pages/rule/rule';
 
 import { SharedData } from '../providers/shared-data/shared-data';

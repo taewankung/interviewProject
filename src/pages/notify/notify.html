@@ -30,6 +30,7 @@
       <ion-select [(ngModel)]="type" item-end>
 				<ion-option value="give">ให้</ion-option>
 				<ion-option value="recieve">รับ</ion-option>
+        <ion-option value="support">ระดมสิ่งของ</ion-option>
 			</ion-select>
     </ion-item>
 
@@ -73,6 +74,22 @@
         </div>
         </ion-col>
       </ion-row>
+      <!-- //////////////////////////////////////////////////////////////////////////////////////// -->
+<!--       <ion-row>
+        <ion-col col-12 no-padding>
+          <ion-label>
+            {{detailText}}:
+          </ion-label>
+        </ion-col>
+        <ion-col no-padding>
+        <div id='test'>
+        <ion-item >
+          <ion-textarea  placeholder="{{detailText}}\n\n\n\n\n" autosize [(ngModel)]="detailNotify">
+          </ion-textarea>
+        </ion-item>
+        </div>
+        </ion-col>
+      </ion-row> -->
       <!-- <ion-row>
          <ion-col col-12 no-padding>
           <ion-label>
