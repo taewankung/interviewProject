@@ -8,6 +8,7 @@ import { NotifyPage } from '../pages/notify/notify';
 import { ProfilePage } from '../pages/profile/profile';
 import { MyNotifyManagePage } from '../pages/my-notify-manage/my-notify-manage';
 import { MyInterestingPage } from '../pages/my-interesting-page/my-interesting-page';
+import { SettingPage} from '../pages/setting/setting';
 
 import { RulePage } from '../pages/rule/rule';
 
@@ -46,7 +47,8 @@ export class MyApp {
                 {title:"ตัวจัดการประกาศ",page:MyNotifyManagePage},
                 {title:"ประกาศที่ต้องการให้/รับ",page:MyInterestingPage},
                 {title:"สร้างประกาศ",page:NotifyPage},
-                {title:"กฏการประกาศ",page:RulePage}
+                {title:"กฏการประกาศ",page:RulePage},
+                {title:"ตั้งค่า",page:SettingPage}
                 //{title:"เกี่ยวกับ",page:null}];
                ]
              }

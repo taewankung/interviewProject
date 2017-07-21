@@ -24,6 +24,7 @@ import { MyNotifyManagePage } from '../pages/my-notify-manage/my-notify-manage';
 import { MyInterestingPage } from '../pages/my-interesting-page/my-interesting-page';
 import { RulePage } from '../pages/rule/rule';
 import { ItemSupportPage } from '../pages/item-support/item-support';
+import { SettingPage } from '../pages/setting/setting'
 
 import { SharedData } from '../providers/shared-data/shared-data';
 import { AuthService } from '../providers/auth-service/auth-service';
@@ -73,7 +74,8 @@ import { PhoneValidateDirective } from '../directives/phone-validate/phone-valid
     UserValidateDirective,
     EqualValidatorDirective,
     PhoneValidateDirective,
-    ItemSupportPage
+    ItemSupportPage,
+    SettingPage
   ],
   imports: [
     BrowserModule,
@@ -102,7 +104,8 @@ import { PhoneValidateDirective } from '../directives/phone-validate/phone-valid
     MyNotifyManagePage,
     MyInterestingPage,
     RulePage,
-    ItemSupportPage
+    ItemSupportPage,
+    SettingPage
   ],
   providers: [
     StatusBar,

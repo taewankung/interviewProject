@@ -52,13 +52,27 @@ export class ReceivePage {
     
   }
 
+  type_name(type){
+    if(type=="give"){
+      return "การให้"
+    }
+    else if(type=="recieve"){
+      return "การรับ"
+    }
+  }
+
   onSearchInput(){
     this.searching = true;
   }
 
   setFilteredItems() {
-    this.datalist = this.notifyPro.search(this.searchText);
+    this.notifyPro.search(this.searchText).subscribe(observer=>{
+      this.datalist = observer;
+      console.log('///////////////////')
+      console.log(this.datalist)
+    });
   }
+  
   listRecieve(start,datalist){
   	this.notifyPro.listRecieve(start,datalist).subscribe(
   	(success)=>{

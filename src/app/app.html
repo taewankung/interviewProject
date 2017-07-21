@@ -1,6 +1,7 @@
-<ion-menu [content]="content" side="left" id="menu1">
+<div class="{{sharedData.state['theme']}}">
+<ion-menu [content]="content" side="left" id="menu1" >
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar color="primary2">
 <!--       <img *ngIf="sharedData.avatar ==''" height="42" width="42" src="assets/pic/person.png"/>
       <div *ngIf="sharedData.username !='' && sharedData.avatar !='' ">
         <img  [defaultImage]="defaultImage" 
@@ -12,22 +13,27 @@
     </ion-toolbar>
   </ion-header>
  
-  <ion-content>
+  <ion-content class="test-content">
     <ion-list>
-      <ion-item>
+      <ion-item class="my-item">
+      <div class="user-label">
       Username: {{sharedData.username}}<br>
       name: {{sharedData.name}}<br>
       surname:{{sharedData.surname}}
+      </div>
       </ion-item>
+      <div class="item-menu-button">
       <button menuClose ion-item *ngFor="let p of pages; let i=index " (click)="openPage(p)">
         {{p.title}}
       </button>
-      <button menuClose ion-item (click)="logout(sharedData.username)">
+      <button menuClose ion-item (click)="logout(sharedData.username)" >
         ออกจากระบบ
       </button>
+      </div>
     </ion-list>
   </ion-content>
  
 </ion-menu>
 
-<ion-nav #content [root]="rootPage"></ion-nav>
+<ion-nav  #content [root]="rootPage"  ></ion-nav>
+</div>

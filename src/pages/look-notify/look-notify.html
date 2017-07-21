@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar #navBar>
+  <ion-navbar #navBar color="mains">
 
     <ion-title>{{data.notifyTitle}}</ion-title>
   </ion-navbar>
@@ -14,11 +14,11 @@
 </ion-header>
 
 
-<ion-content #content padding class="my-page">
+<ion-content #content class="my-page">
 <ion-list>
 	<ion-card>
 	<!-- <ion-card-header>รายละเอียด</ion-card-header> -->
-		<ion-item *ngIf="data.type_name=='give'" color="primary">
+		<ion-item *ngIf="data.type_name=='give'" color="mains" class="my-item">
 			  <ion-avatar item-start>
 					 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="data.avatar!=''">
@@ -31,7 +31,7 @@
 				ประเภท: {{data["type_name"]}}<br>
 				status: {{status_data(data["status"])}}
 		</ion-item>
-		<ion-item *ngIf="data.type_name=='recieve'" color="green4">
+		<ion-item *ngIf="data.type_name=='recieve'" color="mains">
 			<ion-avatar item-start>
 				<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="data.avatar!=''">

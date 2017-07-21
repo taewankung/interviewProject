@@ -34,17 +34,17 @@
        <div *ngIf="password.hasError('required') && password.touched"
             class="error-box">* Password is required
       </div>
-      <button ion-button full type="submit" [disabled]="!registerForm.form.valid">
+      <button ion-button full type="submit" [disabled]="!registerForm.form.valid" color="mains">
         login
       </button>
   </form>
 
   </div>
-      <button ion-button block clear (click)="register()">
+      <button ion-button block clear (click)="register()" color="mains">
         Register
       </button>
-  <ion-item>
+<!--   <ion-item>
       
-  </ion-item>
+  </ion-item> -->
 </ion-list>
 </ion-content>

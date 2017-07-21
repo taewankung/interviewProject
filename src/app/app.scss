@@ -13,7 +13,8 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-ion-title {
+@import '../theme/light.theme';
+/*ion-title {
   position: absolute;
   top: 0;
   left: 0;
@@ -22,3 +23,30 @@ ion-title {
   height: 100%;
   text-align: center;
 }
+$main:#FFA726;
+ion-navbar.toolbar{
+    background-color:$main;
+}
+
+ion-item.my-item.item.item-block{
+  background-color:$main;
+  color:#000000;
+}
+ion-card.card{
+  box-shadow:0 5px 10px rgba(0, 0, 0, 0.5);
+}
+.test-content{
+  background-color:$main;
+}
+ion-searchbar.searchbar{
+  background-color:$main;
+}
+div.scroll-content{
+  background-color:#FFECB3;
+}
+
+ion-card-content{
+  background-color: #FFF9C4;
+}
+
+*/

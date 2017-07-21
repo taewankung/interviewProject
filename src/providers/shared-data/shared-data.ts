@@ -9,7 +9,8 @@ import { FormControl } from '@angular/forms';
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class SharedData {  
+export class SharedData {
+   _state = {};
   ip_local:string = '192.168.1.11';
   id:string;
   username: string;
@@ -54,6 +55,25 @@ export class SharedData {
       this.tel = 0;
       this.email = '';
   }
+
+   get state() {
+       return this._state = this._clone(this._state);
+   }
+   
+   set state(value) {
+       throw new Error('do not mutate the `.state` directly');
+   }
+   get(prop?: any) {
+       const state = this.state;
+       return state.hasOwnProperty(prop) ? state[prop] : state;
+   }
+   set(prop: string, value: any) {
+       return this._state[prop] = value;
+   }
+   _clone(object) {
+       return JSON.parse(JSON.stringify(object));
+   }
+
   clearRegisterData(){
   	this.registerCredentials = { 
                           uid:'',

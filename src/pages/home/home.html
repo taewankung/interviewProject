@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="mains">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -13,12 +13,11 @@
 	</div>
 </ion-header>
 
-<ion-content #container padding class="my-page">
+<ion-content #container>
 
 <ion-list>
 	<ion-card  *ngFor="let data of datalist; let i = index; " (click)="lookNotify(data)">
-		<ion-item-sliding>
-		<ion-item *ngIf="data.type_name=='give'" color="primary">
+		<ion-item *ngIf="data.type_name=='give'" color="mains" class="my-item">
 				 <ion-avatar item-start>
 				 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 				 	<div *ngIf="data.avatar!=''">
@@ -28,12 +27,11 @@
 				 			 [scrollObservable]="container.ionScroll" >
 				 	</div>
 			  	</ion-avatar>
-	  			<!-- {{data["username"]}} -->{{data["name"]}} {{data["surname"]}}<br>
-	  			ประเภท: {{data["type_name"]}}<br>
-
+	  			<!-- {{data["username"]}} -->
+	  			{{data["name"]}} {{data["surname"]}}<br>
+	  			ประเภท: {{type_name(data["type_name"])}}<br>
 	  	</ion-item>
-	  	</ion-item-sliding>
-	  	<ion-item *ngIf="data.type_name=='recieve'" color="green4">
+	  	<ion-item *ngIf="data.type_name=='recieve'" color="mains" class="my-item">
 				<ion-avatar item-start>
 				 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 				 	<div *ngIf="data.avatar!=''">
@@ -43,11 +41,12 @@
 				 			 [scrollObservable]="container.ionScroll" >
 				 	</div>
 			  	</ion-avatar>
-	  			<!-- {{data["username"]}} -->{{data["name"]}} {{data["surname"]}}<br>
-	  			ประเภท: {{data["type_name"]}}<br>
+	  			<!-- {{data["username"]}} -->
+	  			{{data["name"]}} {{data["surname"]}}<br>
+	  			ประเภท: {{type_name(data["type_name"])}}<br>
 	  			<!-- status: {{status_data(data["status"])}} -->
 	  	</ion-item>
- 		<ion-card-content>
+ 		<ion-card-content >
  			<ion-card-title>
       			{{data["notifyTitle"]}}
       		</ion-card-title>
@@ -58,7 +57,7 @@
 	  			<!-- {{data["image"]}} -->
 	  		</p>
 	  		<div *ngIf="data.image">
-	  		<img [defaultImage]="defaultImage" [lazyLoad]="image+data.username+'/'+data.image"  [offset]="offset " [scrollObservable]="container.ionScroll">
+	  		<img [defaultImage]="defaultImage" [lazyLoad]="image+data.username+'/'+data.image"  [offset]="offset " [scrollObservable]="container.ionScroll" >
 	  		</div>
 
   		</ion-card-content>

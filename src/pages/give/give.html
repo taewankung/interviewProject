@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-     <button ion-button menuToggle>
+  <ion-navbar color="mains">
+     <button ion-button menuToggle >
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>ประกาศการให้</ion-title>
@@ -18,11 +18,11 @@
 	</div>
 </ion-header>
 
-<ion-content  #container padding class="my-page">
+<ion-content  #container  class="my-page">
 
 <ion-list>
 	<ion-card  *ngFor="let data of datalist; let i = index;  " (click)="lookNotify(data)">
-		<ion-item *ngIf="data.type_name=='give'" color="primary" >
+		<ion-item *ngIf="data.type_name=='give'" color="mains" class="my-item">
 				<ion-avatar item-start>
           <img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
           <div *ngIf="data.avatar!=''">
@@ -33,7 +33,7 @@
           </div>
           </ion-avatar>
           <!-- {{data["username"]}} -->{{data["name"]}} {{data["surname"]}}<br>
-	  			ประเภท: {{data["type_name"]}}<br>
+	  			ประเภท: {{type_name(data["type_name"])}}<br>
           <!-- status: {{status_data(data["status"])}} -->
 	  	</ion-item>
  		<ion-card-content *ngIf="data.type_name=='give'">

@@ -16,11 +16,14 @@ export class NotificationProvider {
 	private response:JSON;
 	public body="";
 	public SearchData:Array<any>=[];
+	private tmpData:Array<any>=[];
+
 	public success:boolean;
 	//private searchBool:boolean=false;
 	public header: Headers = new Headers(
                     { 'Content-Type': "application/x-www-form-urlencoded; charset=UTF-8"
                     });
+  	
   	public requestOpt: RequestOptions = new RequestOptions(
                     { headers: this.header});
 	constructor(public http: Http,
@@ -29,37 +32,35 @@ export class NotificationProvider {
 	}
 
 	search(searchText){
-		return this.SearchData.filter((item) => {
-			 //console.log('********************')
-			// console.log(item)
-        return (item.username.toLowerCase().indexOf(searchText.toLowerCase()) > -1) || 
-            	   (item.notifyTitle.toLowerCase().indexOf(searchText.toLowerCase()) > -1);
-        	});
+		// return this.SearchData.filter((item) => {
+  //       	return (item.username.toLowerCase().indexOf(searchText.toLowerCase()) > -1) || 
+  //           	   (item.notifyTitle.toLowerCase().indexOf(searchText.toLowerCase()) > -1);
+  //       	});
         /////////////////////////////////////////////////////////////////////////////////////
-        		// return Observable.create((observer)=>{
-  //   		this.body = "key=search"+
-		// 				"&username="+searchText.toString()+
-		// 				"&title="+searchText.toString();
-  //   		this.http.post(this.registerURI,
-		//     				this.body,
-		//     				this.requestOpt
-		//     				).subscribe((data)=>{
-		//     					if(data.status===200){
-		//     						console.log(data)
-		//     						this.response=data.json()
-		//     						if(this.response["message"]=="Success"){
-		//     							console.log("Success list")
-		//     							//this.SearchData = datalist;
-		//     							console.log(searchText)
-		//     							this.SearchData = this.response["data"];
-		//     							observer.next(this.response["data"]);
-		//     							observer.complete();
-		//     						}
-		//     					}
-		//     				},(err)=>{
-		//     					console.log(err);
-		//     				})
-		//     			})
+        return Observable.create((observer)=>{
+    		this.body = "key=search"+
+						"&username="+searchText.toString()+
+						"&title="+searchText.toString();
+    		this.http.post(this.registerURI,
+		    				this.body,
+		    				this.requestOpt
+		    				).subscribe((data)=>{
+		    					if(data.status===200){
+		    						console.log(data)
+		    						this.response=data.json()
+		    						if(this.response["message"]=="Success"){
+		    							console.log("Success list")
+		    							console.log(searchText)
+		    							this.SearchData = this.response["data"];
+		    							observer.next(this.response["data"]);
+		    							observer.complete();
+		    						}
+		    					}
+		    				},(err)=>{
+		    					console.log(err);
+		    				})
+		    			})
+        //return this.SearchData
 		///////////////////////////////////////////////////////////////////////////////////
 		//console.log('xXXXXXXXXXXXXXXXXXXXXXXXx')
 		// if(this.searchBool){

@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar #navBar>
+  <ion-navbar #navBar color="mains">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -22,7 +22,7 @@
 <ion-content padding>
 <ion-list>
 	<ion-card *ngFor="let data of dataInList;" (click)="gotoManage(data)">
-		<ion-item *ngIf="data.type_name=='give'" color="primary">
+		<ion-item *ngIf="data.type_name=='give'" color="mains">
 	  		{{data["notifyTitle"]}}
 	  	</ion-item>
 	  	<ion-item *ngIf="data.type_name=='recieve'" color="green4">

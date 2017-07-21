@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar #navBar>
+  <ion-navbar #navBar color="mains">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -19,7 +19,7 @@
 <ion-content #container padding class="my-page">
 <ion-list>
 	<ion-card>
-		<ion-item *ngIf="data.type_name=='give'" color="primary">
+		<ion-item *ngIf="data.type_name=='give'" color="mains">
 			  <ion-avatar item-start>
 					 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="data.avatar!=''">
@@ -32,7 +32,7 @@
 				ประเภท: {{data["type_name"]}}<br>
 
 		</ion-item>
-		<ion-item *ngIf="data.type_name=='recieve'" color="green4">
+		<ion-item *ngIf="data.type_name=='recieve'" color="mains">
 			<ion-avatar item-start>
 				<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="data.avatar!=''">
