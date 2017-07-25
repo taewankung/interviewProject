@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 //import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { FormControl } from '@angular/forms';
+//import { FormControl } from '@angular/forms';
 /*
   Generated class for the SharedDataProvider provider.
 

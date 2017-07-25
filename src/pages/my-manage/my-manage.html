@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar #navBar color="mains">
+  <ion-navbar #navBar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -19,7 +19,7 @@
 <ion-content #container padding class="my-page">
 <ion-list>
 	<ion-card>
-		<ion-item *ngIf="data.type_name=='give'" color="mains">
+		<ion-item class="my-item">
 			  <ion-avatar item-start>
 					 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="data.avatar!=''">
@@ -32,7 +32,7 @@
 				ประเภท: {{data["type_name"]}}<br>
 
 		</ion-item>
-		<ion-item *ngIf="data.type_name=='recieve'" color="mains">
+		<!-- <ion-item *ngIf="data.type_name=='recieve'" color="mains">
 			<ion-avatar item-start>
 				<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="data.avatar!=''">
@@ -44,7 +44,7 @@
 		  		{{data["name"]}} {{data["surname"]}}<br>
 		  		ประเภท: {{data["type_name"]}}<br>
 
-		</ion-item>
+		</ion-item> -->
 <!-- 		<button ion-button *ngIf="!accepting" (click)="accept()">
 			{{acceptTextBtn()}}
 		</button>
@@ -103,7 +103,7 @@
 	ผู้สนใจให้:
 </ion-label>
 <ion-card *ngFor="let i_data of this.interest_data.data;">
-	<ion-item *ngIf="data.type_name=='recieve'" color="primary"  (click)="lookProfilePage(i_data.username)">
+	<ion-item *ngIf="data.type_name=='recieve'" color="primary" class="my-item" (click)="lookProfilePage(i_data.username)">
 		<ion-avatar item-start>
 			<img *ngIf="i_data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 			<div *ngIf="i_data.avatar!=''">
@@ -116,7 +116,7 @@
 		<!-- {{data["username"]}} -->{{i_data["name"]}} {{i_data["surname"]}}<br>
 		ประเภท: ให้
 	</ion-item>
-	<ion-item *ngIf="data.type_name=='give'" color="green4"  (click)="lookProfilePage(i_data.username)">
+	<ion-item *ngIf="data.type_name=='give'" color="green4" class="my-item" (click)="lookProfilePage(i_data.username)">
 		<ion-avatar item-start>
 		 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 		 	<div *ngIf="data.avatar!=''">

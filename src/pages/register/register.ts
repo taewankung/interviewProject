@@ -170,7 +170,10 @@ export class RegisterPage {
 				this.navCtrl.popToRoot();
 			}else {
 		       console.log("false")
-		       	this.registerCredentials = this.sharedData.clearRegisterData();
+		       console.log(success)
+		       	console.log(success["message"])
+		       	this.showError("Username นี้มีผู้ใช้งานแล้วแล้ว","โปรดเปลียน username ด้วย");
+   				this.registerCredentials = this.sharedData.clearRegisterData();
    				this.profileForm.setValue({uid:'',
 							  username:'',
 							  password:'',
@@ -202,6 +205,19 @@ export class RegisterPage {
 			              this.navCtrl.popToRoot();
 		            	}
 		          	}
+		        }
+	      	]
+	    });
+	    alert.present();
+	}
+
+	showError(title, text) {
+	    let alert = this.alertCtrl.create({
+			title: title,
+			subTitle: text,
+			buttons: [
+		        {
+					text: 'OK',
 		        }
 	      	]
 	    });

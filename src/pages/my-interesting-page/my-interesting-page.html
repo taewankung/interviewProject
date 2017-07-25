@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar #navBar color="mains">
+  <ion-navbar #navBar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -22,12 +22,12 @@
 <ion-content padding>
 <ion-list>
 	<ion-card *ngFor="let data of dataInList;" (click)="gotoManage(data)">
-		<ion-item *ngIf="data.type_name=='give'" color="mains">
+		<ion-item  color="primary" class="my-item">
 	  		{{data["notifyTitle"]}}
 	  	</ion-item>
-	  	<ion-item *ngIf="data.type_name=='recieve'" color="green4">
+<!-- 	  	<ion-item *ngIf="data.type_name=='recieve'" color="green4">
 	  		{{data["notifyTitle"]}}
-	  	</ion-item>
+	  	</ion-item> -->
 		<ion-card-content>
 			ประเภท: {{data["type_name"]}}<br>
 			status: {{status_data(data["status"])}}<br>

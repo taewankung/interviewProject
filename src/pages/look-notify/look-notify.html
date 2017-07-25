@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar #navBar color="mains">
+  <ion-navbar #navBar color="primary">
 
     <ion-title>{{data.notifyTitle}}</ion-title>
   </ion-navbar>
@@ -18,7 +18,7 @@
 <ion-list>
 	<ion-card>
 	<!-- <ion-card-header>รายละเอียด</ion-card-header> -->
-		<ion-item *ngIf="data.type_name=='give'" color="mains" class="my-item">
+		<ion-item  class="my-item">
 			  <ion-avatar item-start>
 					 	<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="data.avatar!=''">
@@ -31,7 +31,7 @@
 				ประเภท: {{data["type_name"]}}<br>
 				status: {{status_data(data["status"])}}
 		</ion-item>
-		<ion-item *ngIf="data.type_name=='recieve'" color="mains">
+		<ion-item *ngIf="data.type_name=='recieve'" >
 			<ion-avatar item-start>
 				<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="data.avatar!=''">
@@ -98,7 +98,7 @@
 
 	<div id={{from}}>
 	<ion-card *ngIf="!interestToggle && interested">
-		<ion-item *ngIf="data.type_name=='give'" color="primary">
+		<ion-item *ngIf="data.type_name=='give'" color="primary" class="my-item">
 <!-- 			  <ion-avatar item-start>
 					 	<img *ngIf="sharedData.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="sharedData.avatar!=''">
@@ -111,7 +111,7 @@
 				(ฝากข้อความถึงผู้ประกาศ)
 <!-- 				ประเภท: {{data["type_name"]}} -->
 		</ion-item>
-		<ion-item *ngIf="data.type_name=='recieve'" color="green4">
+<!-- 		<ion-item *ngIf="data.type_name=='recieve'" color="green4"> -->
 			<!-- <ion-avatar item-start>
 				<img *ngIf="sharedData.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="sharedData.avatar!=''">
@@ -121,9 +121,9 @@
 					 	</div>
 			</ion-avatar> -->
 		  		<!-- {{sharedData["name"]}} {{sharedData["surname"]}}<br> -->
-		  		(ฝากข้อความถึงผู้ประกาศ)
+<!-- 		  		(ฝากข้อความถึงผู้ประกาศ) -->
 <!-- 		  		ประเภท: {{data["type_name"]}} -->
-		</ion-item>
+<!-- 		</ion-item> -->
 		<ion-card-content>
 		  <ion-textarea  placeholder="ส่งข้อความ\n\n\n" autosize [(ngModel)]="message" 
 		  				*ngIf="!interested || enable_btn">

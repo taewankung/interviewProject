@@ -8,7 +8,8 @@ import { NotifyPage } from '../pages/notify/notify';
 import { ProfilePage } from '../pages/profile/profile';
 import { MyNotifyManagePage } from '../pages/my-notify-manage/my-notify-manage';
 import { MyInterestingPage } from '../pages/my-interesting-page/my-interesting-page';
-import { SettingPage} from '../pages/setting/setting';
+import { SettingPage } from '../pages/setting/setting';
+import { GodPage } from '../pages/god/god';
 
 import { RulePage } from '../pages/rule/rule';
 

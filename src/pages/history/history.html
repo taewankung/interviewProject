@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar #navBar color="mains">
+  <ion-navbar #navBar color="primary">
     <ion-title>history</ion-title>
   </ion-navbar>
 <ion-searchbar [(ngModel)]="searchText" [formControl]="searchCtrl" ></ion-searchbar>
@@ -31,7 +31,7 @@
 				{{history_data["name"]}} {{history_data["surname"]}}<br>
 				ประเภท: {{history_data["type_name"]}}<br>
 		</ion-item>
-		<ion-item *ngIf="history_data.type_name=='recieve'" color="green4" class="my-item">
+		<ion-item *ngIf="history_data.type_name=='recieve'" color="primary" class="my-item">
 			<ion-avatar item-start>
 				<img *ngIf="history_data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="history_data.avatar!=''">

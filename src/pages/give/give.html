@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar color="mains">
+  <ion-navbar color="primary">
      <button ion-button menuToggle >
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -22,7 +22,7 @@
 
 <ion-list>
 	<ion-card  *ngFor="let data of datalist; let i = index;  " (click)="lookNotify(data)">
-		<ion-item *ngIf="data.type_name=='give'" color="mains" class="my-item">
+		<ion-item *ngIf="data.type_name=='give'" class="my-item" color="primary">
 				<ion-avatar item-start>
           <img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
           <div *ngIf="data.avatar!=''">

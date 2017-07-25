@@ -26,7 +26,9 @@ export class FromServiceProvider {
   constructor(public http: Http,public sharedData:SharedData) {
     //console.log('Hello FromServiceProvider Provider');
   }
-
+  update_ip(){
+		this.URI = "http://"+this.sharedData.ip_local+"/giveAndShare/province/localtion.php";
+  }
   getProvince(){
   	return Observable.create((observer)=>{
 		this.body = "key=province";

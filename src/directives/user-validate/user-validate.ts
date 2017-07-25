@@ -1,7 +1,7 @@
-import { Directive, forwardRef, Attribute,Input } from '@angular/core';
+import { Directive,Input } from '@angular/core';
 import {  AbstractControl, NG_VALIDATORS } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service/auth-service';
-
+import 'rxjs/add/operator/switchMap';
 /**
  * Generated class for the UserValidateDirective directive.
  *
@@ -31,19 +31,20 @@ export class UserValidateDirective {
       if (!regExp.test(c.value)) {
         return {"invalidText": true};
       }
+      // this.checkUser(c.value);
+      // if(!this.past){
+      //     return {"invalidText": true};
+      // }
+      //   else return null;
+      }
+      
 
-      this.checkUser(c.value)
-      if(!this.past){
+    else{ if (!regExp.test(c.value)) {
         return {"invalidText": true};
       }
+
+      return null;
     }
-    else{
-      if (!regExp.test(c.value)) {
-        return {"invalidText": true};
-      }
-    } 
-
-    return null;
   }
 
   checkUser(data){
@@ -51,7 +52,8 @@ export class UserValidateDirective {
       (success)=>{
         console.log('////////////////director///////////');
         console.log(success);
+        console.log(data);
         this.past=success;
-      })
+      });
   }
 }

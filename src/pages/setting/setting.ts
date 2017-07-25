@@ -1,6 +1,10 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams,Navbar,Content } from 'ionic-angular';
 import { SharedData } from '../../providers/shared-data/shared-data';
+import { FormControl } from '@angular/forms';
+import 'rxjs/add/operator/debounceTime';
+import { Storage } from '@ionic/storage';
+//import {Observable} from 'rxjs/Observable';
 /**
  * Generated class for the SettingPage page.
  *
@@ -15,11 +19,25 @@ import { SharedData } from '../../providers/shared-data/shared-data';
 export class SettingPage {
   @ViewChild('content') content: Content;
   @ViewChild('navBar') navBar: Navbar;
+  theme = new FormControl('')
+  themeText ='default';
   constructor(
   	public navCtrl: NavController, 
   	public navParams: NavParams,
-	public sharedData: SharedData)
-  			   {
+	public sharedData: SharedData,
+  public storage:Storage)
+  {
+    this.storage.get('theme').then(theme=>{
+      this.theme.setValue(theme);
+    });
+    this.theme.valueChanges.debounceTime(1000).subscribe(
+      (data)=>{
+        //console.log(data)
+        this.changeTheme(data);
+        this.storage.set('theme', this.theme.value);
+      }
+    );
+
   }
 
   ionViewDidLoad() {
@@ -32,5 +50,6 @@ export class SettingPage {
  changeTheme(theme) {
    this.sharedData.set('theme', theme);
    console.log(this.sharedData._state)
+   console.log(this.theme)
  }
 }

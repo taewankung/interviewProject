@@ -1,0 +1,90 @@
+.theme-greentea {
+ transition: all 1.1s ease;
+ background-color: #fff;
+ // background: #0c1a2c;
+ // background: linear-gradient(to bottom,rgba(9,16,25,1) 0,rgba(30,28,58,1) 25%,rgba(30,28,58,1) 75%,rgba(11,12,22,1) 100%);
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6,
+ p,
+
+ //body,
+ div {
+   transition: all 1.1s ease;
+   color: black;
+ }
+
+ .toolbar-title,
+ .bar-button-default{
+   color:white;
+ }
+
+ .onboard {
+   border-color: #212121 !important;
+ }
+
+ .toolbar-background,
+ .toggle-checked {
+   transition: all 1.1s ease;
+   background-color: darkgreen !important;
+ }
+ .item-note,
+ .themeButton,
+ion-tab,
+.tabar,
+.show-tabbar{
+   background-color: darkgreen
+ },
+ .tab-button,
+ .tab-button-icon{
+   color:white;
+ },
+ .tab-button[aria-selected=true],
+ .tab-button[aria-selected=true]
+ .tab-button-icon{
+   color:#DCE775  ;
+ }
+  ion-item.my-item.user-tab.item.item-block{
+    background-color:#1B2631;
+  }
+ ion-item.my-item.item.item-block{
+  background-color: green;
+  color:white;
+  ion-label{
+    color:white
+  };
+  }
+  ion-card-content{
+    background-color: white;
+  }
+  ion-card-title{
+    color:white;
+  }
+  ion-searchbar.searchbar{
+    background-color:#1B2631;
+  }
+  .user-label{
+     color:white;
+   }
+  div.scroll-content{
+     background-color:palegreen;
+   }
+  .button-default{
+   background-color: #58D68D !important;
+   span{
+      color:black;
+    };
+  }
+  .item-menu-button{
+    color:black;
+  }
+  input.text-input{
+    color:black;
+  }
+  ion-select{
+    background-color:white;
+  }
+}

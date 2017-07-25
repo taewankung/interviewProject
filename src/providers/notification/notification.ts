@@ -16,7 +16,7 @@ export class NotificationProvider {
 	private response:JSON;
 	public body="";
 	public SearchData:Array<any>=[];
-	private tmpData:Array<any>=[];
+	//private tmpData:Array<any>=[];
 
 	public success:boolean;
 	//private searchBool:boolean=false;
@@ -30,6 +30,10 @@ export class NotificationProvider {
 				public sharedData:SharedData) {
 		console.log('Hello NotificationProvider Provider');
 	}
+
+	update_ip(){
+		this.registerURI = "http://"+this.sharedData.ip_local+"/giveAndShare/notify_manage.php";
+ 	}
 
 	search(searchText){
 		// return this.SearchData.filter((item) => {

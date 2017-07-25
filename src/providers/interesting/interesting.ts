@@ -26,7 +26,9 @@ export class InterestingProvider {
 	constructor(public http: Http,public sharedData:SharedData) {
 		console.log('Hello InterestingProvider Provider');
 	}
-
+  update_ip(){
+		this.interestURI = "http://"+this.sharedData.ip_local+"/giveAndShare/interesting_manage.php";
+  }
 	update(notify_id){
 		return Observable.create(
 			(observer)=>{

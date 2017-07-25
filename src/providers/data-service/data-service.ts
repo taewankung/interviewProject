@@ -28,6 +28,9 @@ export class DataServiceProvider {
 				  ) {
 		console.log('Hello DataServiceProvider Provider');
 	}
+	update_ip(){
+    	this.registerURI = "http://"+this.sharedData.ip_local+"/giveAndShare/manage-data.php";
+  	}
 
 	view_profile(username){
 		return Observable.create(observer =>{

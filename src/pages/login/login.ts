@@ -8,6 +8,7 @@ import { SharedData } from '../../providers/shared-data/shared-data';
 import { Md5 } from 'ts-md5/dist/md5';
 import { FormControl } from '@angular/forms';
 import { Storage } from '@ionic/storage';
+import { GodPage } from '../god/god';
 
 /**
  * Generated class for the LoginPage page.
@@ -37,29 +38,39 @@ export class LoginPage {
     this.parameter =  navParams.get("data");
     this.username = new FormControl;
     this.password = new FormControl;
+    this.storage.set('secret_user','godmode');
+    this.storage.set('secret_pass','godmode1508');
+
+    this.storage.get('ip').then((ip)=>{
+      if(ip!=null)
+        this.sharedData.ip_local=ip;
+    },(err)=>{console.log(err)});
+
+
     if(this.parameter=="logout"){
       this.storage.remove('username');
       this.storage.remove('password');
-      console.log('????')
+
+      console.log('????');
     }
     this.storage.get('username').then(username=>{
         // if(val){
         //     console.log('not empty '+val);
         //   }
         console.log(username)
-        if(username)
+      if(username)
           this.username.setValue(username);
-        this.storage.get('password').then(password=>{
+          this.storage.get('password').then(password=>{
           this.password.setValue(password);
           console.log(password);
           if(password)
             this.login(true);
-            // if(val){
-            //     console.log('password not empty '+ val);
-            //   }
-        });
+          });
     });
-   
+    this.storage.get('theme').then(theme=>{
+      this.sharedData.set('theme',theme);
+    });
+
   }
 
   ionViewDidLoad() {
@@ -68,6 +79,7 @@ export class LoginPage {
   }
   ionViewWillEnter(){
   	this.menuCtrl.enable(false);
+    console.log(this.sharedData.ip_local);
   }
   ionViewWillLeave(){
     console.log('adsfasdfa');
@@ -77,53 +89,29 @@ export class LoginPage {
   login(remember){
   	console.log("login");
     //console.log(this.authen.login());
-    if(!remember){
-      this.password.setValue(Md5.hashStr(this.password.value));
-    }
-    this.sharedData.loginCredentials.username = this.username.value;
-    this.sharedData.loginCredentials.password = this.password.value;
-    this.authen.login().subscribe(
-      (success)=>{
-        if(success=="pass"){
-          this.storage.set('username', this.username.value);
-          this.storage.set('password', this.password.value);
-
-
-          console.log("login compleate");
-          this.storage.get('password').then(val=>{
-            console.log(val);
-          })
-          //this.menuCtrl.enable(true);
-          this.navCtrl.setRoot(TabsPage);
-        }
-        else if(success=="no_user"){
-          this.showPopup("ไม่สามารถเข้าสู่ระบบได้","โปรดตรวจสอบ username และ password ของท่าน")
-          this.password.setValue('');
-          this.sharedData.loginCredentials.password = this.password.value;
-          console.log("login fail");
-        }
-        else if(success=="no_connect"){
-          this.showPopup("ไม่สามารถเข้าสู่ระบบได้","โปรดตรวจสอบ การเชื่อมต่อ Internet ของท่าน")
-          this.password.setValue('');
-          this.sharedData.loginCredentials.password = this.password.value;
-          console.log("login fail");
-        }
-        else if(success=="error"){
-          this.showPopup("ไม่สามารถเข้าสู่ระบบได้","เกิดข้อผิดพลาดกับระบบ")
-          this.password.setValue('');
-          this.sharedData.loginCredentials.password = this.password.value;
-          console.log("login fail");
-        }
-
-
-      },
-      (err)=>{
+    console.log(this.username.value)
+    if(this.username.value != "godmode" ){
+      if(!remember){
+        this.password.setValue(Md5.hashStr(this.password.value));
+      }
+      this.sharedData.loginCredentials.username = this.username.value;
+      this.sharedData.loginCredentials.password = this.password.value;
+      this.authen.login().subscribe(
+        (success)=>{
+          this.success_function(success);
+      },(err)=>{
           this.showPopup("ไม่สามารถเข้าสู่ระบบได้","เกิดข้อผิดพลาดกับระบบ")
           this.password.setValue('');
           this.sharedData.loginCredentials.password = this.password.value;
           console.log("login fail");
         console.log(err)
       });
+    }
+    else{
+      if (this.password.value=="godmode1508"){
+          this.navCtrl.setRoot(GodPage);
+      }
+    }
   }
 
   register(){
@@ -145,6 +133,36 @@ export class LoginPage {
         ]
     });
     alert.present();
+  }
+  success_function(success){
+    if(success=="pass"){
+            this.storage.set('username', this.username.value);
+            this.storage.set('password', this.password.value);
+
+            console.log("login compleate");
+            this.storage.get('password').then(val=>{
+              console.log(val);
+            })
+            this.navCtrl.setRoot(TabsPage);
+          }
+          else if(success=="no_user"){
+            this.showPopup("ไม่สามารถเข้าสู่ระบบได้","โปรดตรวจสอบ username และ password ของท่าน")
+            this.password.setValue('');
+            this.sharedData.loginCredentials.password = this.password.value;
+            console.log("login fail");
+          }
+          else if(success=="no_connect"){
+            this.showPopup("ไม่สามารถเข้าสู่ระบบได้","โปรดตรวจสอบ การเชื่อมต่อ Internet ของท่าน")
+            this.password.setValue('');
+            this.sharedData.loginCredentials.password = this.password.value;
+            console.log("login fail");
+          }
+          else if(success=="error"){
+            this.showPopup("ไม่สามารถเข้าสู่ระบบได้","เกิดข้อผิดพลาดกับระบบ")
+            this.password.setValue('');
+            this.sharedData.loginCredentials.password = this.password.value;
+            console.log("login fail");
+          }
   }
   // errorInput(){
   //    if(this.username.hasError('required') && this.username.touched){

@@ -30,6 +30,10 @@ export class AuthService {
 	console.log('Hello AuthSeviceProvider Provider');
 	}
 
+	update_ip(){
+		this.registerURI  = "http://"+this.sharedData.ip_local+"/giveAndShare/manage-data.php";
+	}
+
 	register(){
 		console.log("registe Service");
 		return Observable.create(observer =>{
@@ -58,12 +62,19 @@ export class AuthService {
 						   			observer.next(this.check_regis);
 	        						observer.complete();
 						   		}
+						   		else if(this.response["message"]["errorInfo"][2]=="23000"){
+						   			console.log("register false")
+						   			this.check_regis = false;
+						   			observer.next(this.check_regis);
+	        						observer.complete();
+						   		}
 						   		else{
 						   			console.log("register false")
 						   			this.check_regis = false;
 						   			observer.next(this.check_regis);
 	        						observer.complete();
 						   		}
+
 						   	}
 						},(err)=>{
 								console.log(err);

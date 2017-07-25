@@ -26,7 +26,9 @@ export class CommentProvider {
     console.log('Hello CommentProvider Provider');
   
   }
-
+  update_ip(){
+    this.commentURI = "http://"+this.sharedData.ip_local+"/giveAndShare/comment_manage.php";
+  }
   comment(user_id,message,point){
 
   	return Observable.create(

@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar #navBar>
+  <ion-navbar #navBar color="primary">
     <ion-title>setting</ion-title>
   </ion-navbar>
 
@@ -14,5 +14,19 @@
 
 
 <ion-content #content padding>
-<button ion-button (click)="changeTheme('theme-light')">เปลี่ยนธีม</button>
+
+<ion-label>
+เลือกธีม
+</ion-label>
+<ion-select [(ngModel)]="themeText"[formControl]="theme" item-end placeholder="กดเพื่อเลือก" class="my-select">
+<ion-option value="theme-aquar-card">AquarCard</ion-option>
+<ion-option value="theme-dark-note">DarkNote</ion-option>
+<ion-option value="theme-dark-sun">DarkSun</ion-option>
+<ion-option value="theme-greentea">Greentea</ion-option>
+<ion-option value="theme-orange">OrangeNote</ion-option>
+<ion-option value="default">Default</ion-option>
+</ion-select>
+
+<!-- <button ion-button (click)="changeTheme(theme)">เปลี่ยนธีม</button> -->
+
 </ion-content>

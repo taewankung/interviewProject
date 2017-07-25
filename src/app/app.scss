@@ -13,7 +13,20 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-@import '../theme/light.theme';
+@import '../theme/dark-note.theme';
+@import '../theme/orange.theme';
+@import '../theme/aquar-card.theme';
+@import '../theme/dark-sun.theme';
+@import '../theme/greentea.theme';
+ .toolbar-title,
+ .bar-button-default{
+   color:white;
+ }
+ .toolbar-background,
+ .toggle-checked {
+   transition: all 1.1s ease;
+   background-color: #488aff !important;
+ }
 /*ion-title {
   position: absolute;
   top: 0;
