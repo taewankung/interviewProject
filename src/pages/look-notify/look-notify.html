@@ -28,10 +28,10 @@
 					 	</div>
 				  	</ion-avatar>
 				{{data["name"]}} {{data["surname"]}}<br>
-				ประเภท: {{data["type_name"]}}<br>
-				status: {{status_data(data["status"])}}
+				{{sharedData.text[sharedData.lang]["type"]}}: {{data["type_name"]}}<br>
+				{{sharedData.text[sharedData.lang]["status"]}}: {{status_data(data["status"],data["type_name"])}}
 		</ion-item>
-		<ion-item *ngIf="data.type_name=='recieve'" >
+		<!-- <ion-item *ngIf="data.type_name=='recieve'" >
 			<ion-avatar item-start>
 				<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
 					 	<div *ngIf="data.avatar!=''">
@@ -43,7 +43,7 @@
 		  		{{data["name"]}} {{data["surname"]}}<br>
 		  		ประเภท: {{data["type_name"]}}<br>
 		  		status: {{status_data(data["status"])}}
-		</ion-item>
+		</ion-item> -->
 	<ion-card-content>
 	<div *ngIf="data.image">
 	<img [defaultImage]="defaultImage" [lazyLoad]="image+data.username+'/'+data.image"  [offset]="offset">
@@ -67,8 +67,8 @@
 		</ion-row>
 		<ion-row>
 			<ion-col>
-				<h1 *ngIf="data.type_name=='give' ">รายละเอียด</h1>
-				<h1 *ngIf="data.type_name=='recieve' ">เหตุผล</h1>
+				<h1 *ngIf="data.type_name=='give' ">{{sharedData.text[sharedData.lang]["detail"]}}</h1>
+				<h1 *ngIf="data.type_name=='recieve' ">{{sharedData.text[sharedData.lang]["reason"]}}</h1>
 				<pre>
 				<p>{{data.detail}}
 				</p>
@@ -83,12 +83,12 @@
 		</ion-row>
 		<ion-row>
 			<ion-col>
-				<button ion-button full (click)="lookProfilePage()">ดูประวัติคนโพส </button>
+				<button ion-button full (click)="lookProfilePage()">{{sharedData.text[sharedData.lang]["history"]}} </button>
 			</ion-col>
 			<ion-col >
-				<button ion-button full *ngIf="data.type_name=='recieve' && interestToggle" (click)="interest()">สนใจจะให้ </button>
-				<button class="moveDown" ion-button full *ngIf="data.type_name=='give' && interestToggle" (click)="interest()">สนใจจะรับ </button>
-				<button ion-button full *ngIf="!interestToggle" (click)="delete()" color="danger">เลิกสนใจ </button>
+				<button ion-button full *ngIf="data.type_name=='recieve' && interestToggle" (click)="interest()">{{sharedData.text[sharedData.lang]["give_interesting"]}} </button>
+				<button class="moveDown" ion-button full *ngIf="data.type_name=='give' && interestToggle" (click)="interest()">{{sharedData.text[sharedData.lang]["recieve_interesting"]}} </button>
+				<button ion-button full *ngIf="!interestToggle" (click)="delete()" class="cancel">{{sharedData.text[sharedData.lang]["not_interesting"]}}</button>
 			</ion-col>
 		</ion-row>
 	</ion-grid>
@@ -134,8 +134,8 @@
 			  </pre>
 		  </div>
 		  <ion-buttons end >
-		  	<button ion-button (click)="send()" *ngIf="enable_btn">ส่ง</button>
-		  	<button ion-button color="danger" (click)="delete()" >เลิกสนใจ</button>
+		  	<button ion-button (click)="send()" *ngIf="enable_btn">{{sharedData.text[sharedData.lang]["send"]}}</button>
+		  	<button ion-button class="cancel" (click)="delete()" >{{sharedData.text[sharedData.lang]["not_interesting"]}}</button>
 		  </ion-buttons>
 		</ion-card-content>
 	</ion-card>

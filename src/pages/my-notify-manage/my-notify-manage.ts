@@ -78,16 +78,28 @@ export class MyNotifyManagePage {
     console.log("delete");
   }
 
-  status_data(data){
+  status_data(data,type){
      if(data==0){
-          return "รอการตัดสิน";
+          return this.sharedData.text[this.sharedData.lang]["wait"];
         }
         else if(data==1){
-          return "ยังไม่เสร็จสิ้น"
+          return this.sharedData.text[this.sharedData.lang]["non_finish"];
         }
-        else if(data==2){
-          return "เสร็จสิ้น"
+        else if(data==2 && type=="give"){
+          return this.sharedData.text[this.sharedData.lang]["give_finish"];
         }
+        else if(data==2 && type=="recieve"){
+          return this.sharedData.text[this.sharedData.lang]["recieve_finish"];
+        }
+  }
+
+  type_name(type){
+    if(type=="give"){
+      return  this.sharedData.text[this.sharedData.lang]["giving"]
+    }
+    else if(type=="recieve"){
+      return this.sharedData.text[this.sharedData.lang]["recieving"]
+    }
   }
 
   doInfinite(infiniteScroll) {

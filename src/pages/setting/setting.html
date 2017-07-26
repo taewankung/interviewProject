@@ -7,26 +7,35 @@
 <ion-header>
 
   <ion-navbar #navBar color="primary">
-    <ion-title>setting</ion-title>
+    <ion-title>{{sharedData.text[lang.value]["setting_title"]}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content #content padding>
-
-<ion-label>
-เลือกธีม
-</ion-label>
-<ion-select [(ngModel)]="themeText"[formControl]="theme" item-end placeholder="กดเพื่อเลือก" class="my-select">
-<ion-option value="theme-aquar-card">AquarCard</ion-option>
-<ion-option value="theme-dark-note">DarkNote</ion-option>
-<ion-option value="theme-dark-sun">DarkSun</ion-option>
-<ion-option value="theme-greentea">Greentea</ion-option>
-<ion-option value="theme-orange">OrangeNote</ion-option>
-<ion-option value="default">Default</ion-option>
-</ion-select>
-
+<ion-item>
+	<ion-label>
+	{{sharedData.text[lang.value]["setting_theme"]}}
+	</ion-label>
+	<ion-select [(ngModel)]="themeText" [formControl]="theme" item-end placeholder="กดเพื่อเลือก" class="my-select">
+		<ion-option value="theme-aquar-card">AquarCard</ion-option>
+		<ion-option value="theme-dark-note">DarkNote</ion-option>
+		<ion-option value="theme-dark-sun">DarkSun</ion-option>
+		<ion-option value="theme-greentea">Greentea</ion-option>
+		<ion-option value="theme-orange">OrangeNote</ion-option>
+		<ion-option value="default">Default</ion-option>
+	</ion-select>
+</ion-item>
+<ion-item>
+	<ion-label>
+	{{sharedData.text[lang.value]["setting_lang"]}}
+	</ion-label>
+	<ion-select [(ngModel)]="langText" [formControl]="lang" item-end placeholder="กดเพื่อเลือก" class="my-select">
+		<ion-option value="TH">ไทย</ion-option>
+		<ion-option value="ENG">English</ion-option>
+	</ion-select>
+</ion-item>
 <!-- <button ion-button (click)="changeTheme(theme)">เปลี่ยนธีม</button> -->
 
 </ion-content>

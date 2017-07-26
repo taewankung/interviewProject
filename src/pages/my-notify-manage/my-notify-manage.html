@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>my_notify_manage</ion-title>
+    <ion-title>{{sharedData.text[sharedData.lang]["notifyManager"]}}</ion-title>
   </ion-navbar>
 <ion-searchbar [(ngModel)]="searchText" [formControl]="searchCtrl" ></ion-searchbar>
 	<div *ngIf="searching" class="spinner-container">
@@ -29,9 +29,9 @@
 	  		{{data["notifyTitle"]}}
 	  	</ion-item> -->
 		<ion-card-content>
-			ประเภท: {{data["type_name"]}}<br>
-			status: {{status_data(data["status"])}}<br>
-			จำนวนผู้สนใจ: {{data["interest_point"]}}
+			{{sharedData.text[sharedData.lang]["type"]}}: {{type_name(data["type_name"])}}<br>
+			{{sharedData.text[sharedData.lang]["status"]}}: {{status_data(data["status"],data["type_name"])}}<br>
+			{{sharedData.text[sharedData.lang]["interesting_number"]}}: {{data["interest_point"]}}
 		</ion-card-content>
 	</ion-card>
 </ion-list>

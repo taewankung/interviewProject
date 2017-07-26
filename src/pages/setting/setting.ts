@@ -21,14 +21,22 @@ export class SettingPage {
   @ViewChild('navBar') navBar: Navbar;
   theme = new FormControl('')
   themeText ='default';
+  lang = new FormControl('TH');
+  langText = 'TH';
+
   constructor(
-  	public navCtrl: NavController, 
+    public navCtrl: NavController, 
   	public navParams: NavParams,
-	public sharedData: SharedData,
-  public storage:Storage)
+	  public sharedData: SharedData,
+    public storage:Storage)
   {
     this.storage.get('theme').then(theme=>{
       this.theme.setValue(theme);
+    });
+    this.storage.get('lang').then(lang=>{
+      if(lang){
+        this.lang.setValue(lang);
+      }
     });
     this.theme.valueChanges.debounceTime(1000).subscribe(
       (data)=>{
@@ -37,7 +45,14 @@ export class SettingPage {
         this.storage.set('theme', this.theme.value);
       }
     );
-
+    this.lang.valueChanges.debounceTime(1000).subscribe(
+      (data)=>{
+        //console.log(data)
+        this.changeLang(data);
+        this.storage.set('lang', this.lang.value);
+      }
+    );
+    console.log(this.lang.value)
   }
 
   ionViewDidLoad() {
@@ -49,7 +64,13 @@ export class SettingPage {
   }
  changeTheme(theme) {
    this.sharedData.set('theme', theme);
-   console.log(this.sharedData._state)
-   console.log(this.theme)
+   console.log(this.sharedData._state);
+   console.log(this.theme);
+ }
+
+ changeLang(lang){
+   //console.log("//////////////////"+lang);
+   this.sharedData.setLang(lang);
+   console.log(this)
  }
 }

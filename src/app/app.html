@@ -24,13 +24,13 @@
       </ion-item>
       <div class="item-menu-button">
       <button  class="item-menu-button" menuClose ion-item *ngFor="let p of pages; let i=index " (click)="openPage(p)">
-        <div class="item-menu-button">{{p.title}}</div>
+        <div class="item-menu-button">{{ sharedData.text[sharedData.lang][p.title] }}</div>
       </button>
 
       </div>
     </ion-list>
         <button menuClose ion-item (click)="logout(sharedData.username)" >
-         <div class="item-menu-button">ออกจากระบบ</div>
+         <div class="item-menu-button">{{sharedData.text[sharedData.lang]["logout"]}}</div>
       </button>
   </ion-content>
  

@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar #navBar color="primary">
-    <ion-title>profile</ion-title>
+    <ion-title>{{sharedData.text[sharedData.lang]["profile"]}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -106,19 +106,19 @@
       </ion-row>
 </form>
     <button ion-button full *ngIf="!edit && !editImage" (click)="editMode()">
-    แก้ไขข้อมูล
+    {{sharedData.text[sharedData.lang]["edit"]}}
     </button>
     <button ion-button full *ngIf="edit || editImage" (click)="save()">
-    	save
+    	{{sharedData.text[sharedData.lang]["save"]}}
     </button>
     <button ion-button full *ngIf="edit" (click)="viewMode()">
-    	cancel
+    	{{sharedData.text[sharedData.lang]["cancel"]}}
     </button>
 	<button ion-button full (click)="gotoHistory()">
-		ดูประวัติการประกาศ
+		{{sharedData.text[sharedData.lang]["history"]}}
 	</button>
 	<button ion-button full (click)="gotoComment()">
-		ดูคอมเมนท์ที่ได้รับ
+		{{sharedData.text[sharedData.lang]["view_comment"]}}
 	</button>
 <ion-grid>
 <!-- <ion-row>

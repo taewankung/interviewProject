@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, Tabs } from 'ionic-angular';
 import { HomePage } from '../home/home'
 import { GivePage } from '../give/give'
 import { ReceivePage } from '../receive/receive'
+import { SharedData } from '../../providers/shared-data/shared-data'
 //import { NotifyPage } from '../notify/notify'
 
 /**
@@ -25,7 +26,8 @@ export class TabsPage {
 	hided = true;
 	@ViewChild('myTabs') tabRef: Tabs;
 	constructor(public navCtrl: NavController, 
-				public navParams: NavParams) {
+				public navParams: NavParams,
+				public sharedData: SharedData){
 
 	}
 

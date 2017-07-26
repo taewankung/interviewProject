@@ -17,9 +17,9 @@
 
 </ion-content> -->
 <ion-tabs #myTabs [selectedIndex]="1">
-  <ion-tab [root]="tab3Root" [rootParams]="{ids:0}" tabTitle="รับ" tabIcon="basket"></ion-tab>
-  <ion-tab [root]="tab1Root" [rootParams]="{ids:1}" tabTitle="หน้าแรก" tabIcon="home"></ion-tab>
+  <ion-tab [root]="tab3Root" [rootParams]="{ids:0}" tabTitle="{{sharedData.text[sharedData.lang].tab_recieve}}" tabIcon="basket"></ion-tab>
+  <ion-tab [root]="tab1Root" [rootParams]="{ids:1}" tabTitle="{{sharedData.text[sharedData.lang].tab_home}}" tabIcon="home"></ion-tab>
 
-  <ion-tab [root]="tab2Root" [rootParams]="{ids:2}" tabTitle="ให้" tabIcon="medal"></ion-tab>
+  <ion-tab [root]="tab2Root" [rootParams]="{ids:2}" tabTitle="{{sharedData.text[sharedData.lang].tab_give}}" tabIcon="medal"></ion-tab>
  <!--  <ion-tab [root]="tab3Root" tabTitle="กลุ่ม" tabIcon="people"></ion-tab> -->
 </ion-tabs>

@@ -61,15 +61,21 @@ ion-searchbar.searchbar{
  }
 div.scroll-content{
      background-color:#b3e0ff;
-   }
-    .button-default{
-   background-color: #001BFF !important;
-   span{
-      color:white;
-   }
 }
+.button-default{
+  background-color: #2E64FE !important;
+    span{
+          color:white;
+    }
+  }
 ion-select{
-  background-color:white;
-}
+    background-color:white;
+  }
 
+ion-card.card{
+  box-shadow:0 10px 10px rgba(0, 0, 0, 0.5);
+}
+button.cancel{
+  background-color:#f53d3d !important;
+}
 }

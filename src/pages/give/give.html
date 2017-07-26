@@ -10,7 +10,9 @@
      <button ion-button menuToggle >
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>ประกาศการให้</ion-title>
+    <ion-title>
+    {{sharedData.text[sharedData.lang]["give_title"]}}
+    </ion-title>
   </ion-navbar>
   <ion-searchbar [(ngModel)]="searchText" [formControl]="searchCtrl"></ion-searchbar>
 	<div *ngIf="searching" class="spinner-container">
@@ -33,7 +35,7 @@
           </div>
           </ion-avatar>
           <!-- {{data["username"]}} -->{{data["name"]}} {{data["surname"]}}<br>
-	  			ประเภท: {{type_name(data["type_name"])}}<br>
+	  			{{sharedData.text[sharedData.lang]["type"]}}: {{type_name(data["type_name"])}}<br>
           <!-- status: {{status_data(data["status"])}} -->
 	  	</ion-item>
  		<ion-card-content *ngIf="data.type_name=='give'">
@@ -42,7 +44,7 @@
       </ion-card-title>
 <!--       <pre><p>{{data["detail"].toString()}}</p></pre><br> -->
       	<p>
-        สถานะ: {{status_data(data["status"],data["type"])}}<br>
+        {{sharedData.text[sharedData.lang]["status"]}}: {{status_data(data["status"],data["type_name"])}}<br>
 	  		{{data["create_date"]}}
 	  		</p>
       <div *ngIf="data.image">

@@ -59,6 +59,7 @@ ion-card-content{
  }
  .button-default{
    background-color: #D84315 !important;
+   text-transform: none;
 }
 .user-label{
    color:black;
@@ -69,5 +70,8 @@ ion-card-content{
         color:black
         };
   }
-
+  .button-md{
+    background-color:#f53d3d !important;
+    text-transform: none;
+  }
 }

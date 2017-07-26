@@ -9,7 +9,6 @@ import { ProfilePage } from '../pages/profile/profile';
 import { MyNotifyManagePage } from '../pages/my-notify-manage/my-notify-manage';
 import { MyInterestingPage } from '../pages/my-interesting-page/my-interesting-page';
 import { SettingPage } from '../pages/setting/setting';
-import { GodPage } from '../pages/god/god';
 
 import { RulePage } from '../pages/rule/rule';
 
@@ -43,18 +42,19 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-    this.pages=[{title:"หน้าแรก",page:TabsPage},
-                {title:"ข้อมูลส่วนตัว",page:ProfilePage},
-                {title:"ตัวจัดการประกาศ",page:MyNotifyManagePage},
-                {title:"ประกาศที่ต้องการให้/รับ",page:MyInterestingPage},
-                {title:"สร้างประกาศ",page:NotifyPage},
-                {title:"กฏการประกาศ",page:RulePage},
-                {title:"ตั้งค่า",page:SettingPage}
+    this.pages=[{title:"home",page:TabsPage},
+                {title:"profile",page:ProfilePage},
+                {title:"notifyManager",page:MyNotifyManagePage},
+                {title:"wantTo",page:MyInterestingPage},
+                {title:"createNotify",page:NotifyPage},
+                {title:"rule",page:RulePage},
+                {title:"setting",page:SettingPage}
                 //{title:"เกี่ยวกับ",page:null}];
                ]
              }
   openPage(page){
     if(page.page != null){
+      console.log(page)
       this.nav.push(page.page);
     }
     else{
