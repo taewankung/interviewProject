@@ -28,8 +28,8 @@ export class HomePage {
   constructor(public navCtrl: NavController,
   			      public notifyPro: NotificationProvider,
           	  public navParams: NavParams,
-          	  public sharedData: SharedData
-  			 ) {
+          	  public sharedData: SharedData) 
+  {
     this.searchCtrl = new FormControl();
     this.searchCtrl.valueChanges.debounceTime(700).distinctUntilChanged().subscribe(
       search => {
@@ -114,7 +114,7 @@ export class HomePage {
       this.list(this.start,this.datalist);
       //console.log(this.start);
       //console.log(this.datalist.length)
-     }
+    }
      // console.log('Async operation has ended');
       infiniteScroll.complete();
     }, 500);
