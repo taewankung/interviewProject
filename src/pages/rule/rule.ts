@@ -1,6 +1,6 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams,Navbar } from 'ionic-angular';
-
+import { SharedData } from "../../providers/shared-data/shared-data";
 /**
  * Generated class for the RulePage page.
  *
@@ -14,7 +14,9 @@ import { IonicPage, NavController, NavParams,Navbar } from 'ionic-angular';
 })
 export class RulePage {
 	@ViewChild('navBar') navBar: Navbar;
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public navCtrl: NavController, 
+				public navParams: NavParams,
+				public sharedData: SharedData) {
   	}
 	ionViewDidLoad() {
     	console.log('ionViewDidLoad RulePage');

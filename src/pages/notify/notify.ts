@@ -240,17 +240,17 @@ export class NotifyPage {
             this.uploadImage();
           }
           else{
-            this.showPopup("สร้างประกาศสำเร็จ","");
+            this.showPopup(this.sharedData.text[this.sharedData.lang]["create_notify_success"],"");
             this.navCtrl.setRoot(TabsPage);
           }
   			}
   		  else{
-          this.showPopup("เกิดข้อผิดพลาด","");
+          this.showPopup(this.sharedData.text[this.sharedData.lang]["error"],"");
   				console.log("fail");
   			}
   		},
   		(err)=>{
-        this.showPopup("เกิดข้อผิดพลาด","");
+        this.showPopup(this.sharedData.text[this.sharedData.lang]["error"],"");
         console.log(err);
   		});
 
@@ -307,7 +307,7 @@ export class NotifyPage {
     console.log(data);
       this.loading.dismiss();
       this.finish=true;
-      this.showPopup("สร้างประกาศสำเร็จ","");
+      this.showPopup(this.sharedData.text[this.sharedData.lang]["create_notify_success"],"");
       this.navCtrl.setRoot(TabsPage);
     //this.showPopup('Image succesful uploaded.','');
   }, err => {

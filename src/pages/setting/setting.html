@@ -15,7 +15,7 @@
 
 <ion-content #content padding>
 <ion-item>
-	<ion-label>
+	<ion-label class="label2">
 	{{sharedData.text[lang.value]["setting_theme"]}}
 	</ion-label>
 	<ion-select [(ngModel)]="themeText" [formControl]="theme" item-end placeholder="กดเพื่อเลือก" class="my-select">
@@ -28,7 +28,7 @@
 	</ion-select>
 </ion-item>
 <ion-item>
-	<ion-label>
+	<ion-label  class="label2">
 	{{sharedData.text[lang.value]["setting_lang"]}}
 	</ion-label>
 	<ion-select [(ngModel)]="langText" [formControl]="lang" item-end placeholder="กดเพื่อเลือก" class="my-select">

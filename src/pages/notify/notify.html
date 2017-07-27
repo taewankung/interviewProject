@@ -10,7 +10,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>
-      เพิ่มประกาศ
+      {{sharedData.text[sharedData.lang]["create_notify"]}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -20,16 +20,16 @@
     <ion-item>
 	  <!-- <ion-label color="primary">username</ion-label> -->
 		  <ion-label fixed>
-			 ชื่อประกาศ
+			 {{sharedData.text[sharedData.lang]["notify_name"]}}
 		  </ion-label>
 		  <ion-input type="text" placeholder="" name="notifyName" [(ngModel)]="notifyTitle" required>
 			</ion-input>
 		</ion-item>
     <ion-item>
-		  <ion-label >{{selectType}}:</ion-label>
+		  <ion-label >{{sharedData.text[sharedData.lang]["select_type"]}}:</ion-label>
       <ion-select [(ngModel)]="type" item-end>
-				<ion-option value="give">ให้</ion-option>
-				<ion-option value="recieve">รับ</ion-option>
+				<ion-option value="give">{{sharedData.text[sharedData.lang]["giving"]}}</ion-option>
+				<ion-option value="recieve">{{sharedData.text[sharedData.lang]["recieving"]}}</ion-option>
         <!-- <ion-option value="support">ระดมสิ่งของ</ion-option> -->
 			</ion-select>
     </ion-item>
@@ -38,13 +38,13 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-	       เลือกรูป
+         เลือกรูป
         </ion-col>
         <ion-col>
-          <button ion-button item-end (click)="accessGallery(camera.PictureSourceType.CAMERA)">ถ่ายรูป</button>
+          <button ion-button item-end (click)="accessGallery(camera.PictureSourceType.CAMERA)">{{sharedData.text[sharedData.lang]["camera"]}}</button>
         </ion-col>
         <ion-col>
-          <button href="#test"  ion-button item-end (click)="accessGallery(camera.PictureSourceType.PHOTOLIBRARY)" >เลือกรูป</button>
+          <button href="#test"  ion-button item-end (click)="accessGallery(camera.PictureSourceType.PHOTOLIBRARY)" >{{sharedData.text[sharedData.lang]["browse"]}}</button>
         </ion-col>
       </ion-row>
       <ion-row [hidden]="lastImage === null">
@@ -112,10 +112,10 @@
 <!--             <button ion-button full (click)="uploadImage()">upload</button>
           </ion-col> -->
           <ion-col>
-            <button ion-button full (click)="create()" [disabled]="disableBtn">สร้าง</button>
+            <button ion-button full (click)="create()" [disabled]="disableBtn">{{sharedData.text[sharedData.lang]["create"]}}</button>
           </ion-col>
           <ion-col>
-            <button (click)="goBack()" color="danger" ion-button full>ยกเลิก</button>
+            <button (click)="goBack()" color="danger" ion-button class="cancel" full>{{sharedData.text[sharedData.lang]["cancel"]}}</button>
           </ion-col>
         </ion-row>
     </ion-grid>

@@ -29,36 +29,14 @@
 					 	</div>
 				  	</ion-avatar>
 				{{data["name"]}} {{data["surname"]}}<br>
-				ประเภท: {{data["type_name"]}}<br>
+				{{sharedData.text[sharedData.lang]["type"]}}: {{data["type_name"]}}<br>
 
 		</ion-item>
-		<!-- <ion-item *ngIf="data.type_name=='recieve'" color="mains">
-			<ion-avatar item-start>
-				<img *ngIf="data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
-					 	<div *ngIf="data.avatar!=''">
-					 		<img [defaultImage]="defaultImage" 
-					 			 [lazyLoad]="image+data.username+'/avatar/'+data.avatar"  
-					 			 [offset]="offset " >
-					 	</div>
-			</ion-avatar>
-		  		{{data["name"]}} {{data["surname"]}}<br>
-		  		ประเภท: {{data["type_name"]}}<br>
-
-		</ion-item> -->
-<!-- 		<button ion-button *ngIf="!accepting" (click)="accept()">
-			{{acceptTextBtn()}}
-		</button>
-		<button ion-button color="danger" *ngIf="accepting" (click)="deaccept()">
-			ยกเลิก
-		</button> -->
-<!-- 		<button ion-button color="danger" (click)="delete()">
-			ลบ
-		</button> -->
-			<ion-card-content>
+	<ion-card-content>
 	<div *ngIf="data.image">
 	<img [defaultImage]="defaultImage" [lazyLoad]="image+data.username+'/'+data.image"  [offset]="offset">
 		<h1>
-		Status: {{this.accept_text}}
+		{{sharedData.text[sharedData.lang]["status"]}}: {{this.accept_text}}
 		</h1>  		<!-- status: {{this.accept_text}} -->
 	</div>
 	<div>
@@ -80,17 +58,17 @@
 		</ion-row>
 		<ion-row>
 			<ion-col>
-				<h1 *ngIf="data.type_name=='give' ">รายละเอียด</h1>
-				<h1 *ngIf="data.type_name=='recieve' ">เหตุผล</h1>
+				<h1 *ngIf="data.type_name=='give' ">{{sharedData.text[sharedData.lang]["detail"]}}</h1>
+				<h1 *ngIf="data.type_name=='recieve' ">{{sharedData.text[sharedData.lang]["reason"]}}</h1>
 				<pre>
 				<p>{{data.detail}}
 				</p>
 				</pre>
 				<p *ngIf="data.type_name=='give' ">
-					จำนวนผู้สนใจรับ: {{interest_point}}
+					{{sharedData.text[sharedData.lang]["recieve_number"]}}: {{interest_point}}
 				</p>
 				<p *ngIf="data.type_name=='recieve' ">
-					จำนวนผู้สนใจให้: {{interest_point}}
+					{{sharedData.text[sharedData.lang]["give_number"]}}: {{interest_point}}
 				</p>
 			</ion-col>
 		</ion-row>
@@ -109,12 +87,12 @@
 			<div *ngIf="i_data.avatar!=''">
 				<img [defaultImage]="defaultImage" 
 					 [lazyLoad]="image+data.username+'/avatar/'+data.avatar"  
-					 [offset]="offset " 
-					 [scrollObservable]="container.ionScroll" >
+					 [offset]="offset"
+					 [scrollObservable]="container.ionScroll">
 			</div>
 		</ion-avatar>
 		<!-- {{data["username"]}} -->{{i_data["name"]}} {{i_data["surname"]}}<br>
-		ประเภท: ให้
+		{{sharedData.text[sharedData.lang]["type"]}}: ให้
 	</ion-item>
 	<ion-item *ngIf="data.type_name=='give'" color="green4" class="my-item" (click)="lookProfilePage(i_data.username)">
 		<ion-avatar item-start>
@@ -127,7 +105,7 @@
 		 	</div>
 	  	</ion-avatar>
 			<!-- {{data["username"]}} -->{{i_data["name"]}} {{i_data["surname"]}}<br>
-			ประเภท: รับ
+			{{sharedData.text[sharedData.lang]["type"]}}: รับ
 	</ion-item>
   	<ion-card-content>
 		{{i_data["post_data"]}}<br>
@@ -141,10 +119,10 @@
 				{{acceptTextBtn()}}
 			</button>
 			<button ion-button color="secondary" (click)="lookProfilePage(i_data.username)">
-				ดูประวัติ
+				{{sharedData.text[sharedData.lang]["history"]}}
 			</button>
 			<button ion-button color="danger" *ngIf="accepting" (click)="deaccept(i_data.id)">
-				ยกเลิก
+				{{sharedData.text[sharedData.lang]["cancel"]}}
 			</button>
 		</ion-buttons>
 	</ion-card-content>

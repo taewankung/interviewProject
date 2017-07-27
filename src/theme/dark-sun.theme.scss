@@ -53,8 +53,9 @@ ion-tab,
  ion-item.my-item.item.item-block{
   background-color: #D35400;
   color:white;
-  ion-label{color:white};
+    ion-label{color:white};
   }
+
   ion-card-content{
     background-color: #1B2631;
   }
@@ -65,14 +66,14 @@ ion-tab,
     background-color:#1B2631;
   }
   .user-label{
-     color:white;
+    color:white;
    }
   div.scroll-content{
-     background-color:#566573;
+    background-color:#566573;
    }
   .button-default{
-   background-color: #FFA726 !important;
-   span{
+    background-color: #FFA726 !important;
+    span{
       color:black;
     };
   }
@@ -89,6 +90,9 @@ ion-tab,
     };
   }
   button.cancel{
-  background-color:#f53d3d !important;
-}
+    background-color:#f53d3d !important;
+  }
+  ion-label.label2{
+    color:black;
+  }
 }

@@ -26,7 +26,7 @@ export class HomePage {
   status_text:string;
 
   constructor(public navCtrl: NavController,
-  			  public notifyPro: NotificationProvider,
+  			      public notifyPro: NotificationProvider,
           	  public navParams: NavParams,
           	  public sharedData: SharedData
   			 ) {
@@ -37,7 +37,6 @@ export class HomePage {
         this.setFilteredItems();
       }
     );
-
   }
 
   ionViewWillEnter(){
@@ -90,11 +89,14 @@ export class HomePage {
   }
 
   list(start,datalist){
+    let i =0;
     this.notifyPro.list(start,this.datalist).subscribe((success)=>{
       for(let data of success){
         //console.log('//////////////////////////////////////////////////')
         //console.log(data);
+        i++;
         this.datalist.push(data);
+        console.log(i);
       }
       this.start = this.start+4;
     },(err)=>{console.log(err);

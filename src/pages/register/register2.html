@@ -79,7 +79,7 @@
       <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label >เลือกจังหวัด:</ion-label>
+              <ion-label  class="label2" >เลือกจังหวัด:</ion-label>
               <ion-select formControlName="provinceData"  item-end placeholder="กดเพื่อเลือก">
                 <ion-option *ngFor="let data of proviceList;" value="{{data.PROVINCE_ID}}">{{data.PROVINCE_NAME}}</ion-option>
             </ion-select>
@@ -88,7 +88,7 @@
 
           <ion-col>
             <ion-item *ngIf="form.get('provinceData').value!=-1">
-              <ion-label >เลือกอำเภอ:</ion-label>
+              <ion-label class="label2" >เลือกอำเภอ:</ion-label>
               <ion-select [(ngModel)]="amphurData" [ngModelOptions]="{standalone: true}" item-end placeholder="กดเพื่อเลือก">
                 <ion-option *ngFor="let data of amphurList;" value="{{data.AMPHUR_ID}}">{{data.AMPHUR_NAME}}</ion-option>
               </ion-select>

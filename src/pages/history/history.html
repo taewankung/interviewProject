@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar #navBar color="primary">
-    <ion-title>history</ion-title>
+    <ion-title>{{sharedData.text[sharedData.lang]["history"]}}</ion-title>
   </ion-navbar>
 <ion-searchbar [(ngModel)]="searchText" [formControl]="searchCtrl" ></ion-searchbar>
 	<div *ngIf="searching" class="spinner-container">
@@ -19,35 +19,35 @@
 <ion-content padding>
 <ion-list>
 	<ion-card *ngFor="let history_data of dataInlist" (click)="lookNotify(history_data)">
-			<ion-item *ngIf="history_data.type_name=='give'" color="primary" class="my-item">
-<ion-avatar item-start>
-				<img *ngIf="history_data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
-					 	<div *ngIf="history_data.avatar!=''">
-					 		<img [defaultImage]="defaultImage" 
-					 			 [lazyLoad]="image+history_data.username+'/avatar/'+history_data.avatar"  
-					 			 [offset]="offset " >
-					 	</div>
-			</ion-avatar>
+		<ion-item *ngIf="history_data.type_name=='give'" color="primary" class="my-item">
+		<ion-avatar item-start>
+			<img *ngIf="history_data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
+				<div *ngIf="history_data.avatar!=''">
+				<img [defaultImage]="defaultImage"
+					 [lazyLoad]="image+history_data.username+'/avatar/'+history_data.avatar"  
+					 [offset]="offset">
+				</div>
+		</ion-avatar>
 				{{history_data["name"]}} {{history_data["surname"]}}<br>
-				ประเภท: {{history_data["type_name"]}}<br>
+				{{sharedData.text[sharedData.lang]["type"]}}: {{history_data["type_name"]}}
+				<br>
 		</ion-item>
 		<ion-item *ngIf="history_data.type_name=='recieve'" color="primary" class="my-item">
 			<ion-avatar item-start>
-				<img *ngIf="history_data.avatar=='' " width="42" height="42"  src="assets/pic/person.png"/>
+				<img *ngIf="history_data.avatar=='' " width="42" height="42" src="assets/pic/person.png"/>
 					 	<div *ngIf="history_data.avatar!=''">
 					 		<img [defaultImage]="defaultImage" 
 					 			 [lazyLoad]="image+history_data.username+'/avatar/'+history_data.avatar"  
-					 			 [offset]="offset " >
+					 			 [offset]="offset">
 					 	</div>
 			</ion-avatar>
 		  		{{history_data["name"]}} {{history_data["surname"]}}<br>
 		  		ประเภท: {{history_data["type_name"]}}<br>
-
 		</ion-item>
 		<ion-item>
-			ชื่อประกาศ: {{history_data["notifyTitle"]}}<br>
-			status: {{status_data(history_data["status"],history_data["type_name"])}}<br>
-			สร้างเมื่อ: {{history_data["create_date"]}}
+			{{sharedData.text[sharedData.lang]["notify_name"]}}: {{history_data["notifyTitle"]}}<br>
+			{{sharedData.text[sharedData.lang]["status"]}}: {{status_data(history_data["status"],history_data["type_name"])}}<br>
+			{{sharedData.text[sharedData.lang]["when"]}}: {{history_data["create_date"]}}
 		</ion-item>
 	</ion-card>
 

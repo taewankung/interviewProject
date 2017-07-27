@@ -24,7 +24,7 @@
 					 	<div *ngIf="data.avatar!=''">
 					 		<img [defaultImage]="defaultImage" 
 					 			 [lazyLoad]="image+data.username+'/avatar/'+data.avatar"  
-					 			 [offset]="offset " >
+					 			 [offset]="offset" >
 					 	</div>
 				  	</ion-avatar>
 				{{data["name"]}} {{data["surname"]}}<br>
@@ -74,10 +74,10 @@
 				</p>
 				</pre>
 				<p *ngIf="data.type_name=='give' ">
-					จำนวนผู้สนใจรับ: {{interest_point}}
+					{{sharedData.text[sharedData.lang]["recieve_interesting"]}}: {{interest_point}}
 				</p>
 				<p *ngIf="data.type_name=='recieve' ">
-					จำนวนผู้สนใจให้: {{interest_point}}
+					{{sharedData.text[sharedData.lang]["give_interesting"]}}: {{interest_point}}
 				</p>
 			</ion-col>
 		</ion-row>

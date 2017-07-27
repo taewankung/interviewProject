@@ -70,6 +70,14 @@ export class LoginPage {
     this.storage.get('theme').then(theme=>{
       this.sharedData.set('theme',theme);
     });
+    this.storage.get('lang').then(lang=>{
+        // if(val){
+        //     console.log('not empty '+val);
+        //   }
+        console.log(lang)
+      if(lang)
+          this.sharedData.lang=lang;
+    });
 
   }
 
